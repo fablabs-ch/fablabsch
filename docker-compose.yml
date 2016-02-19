@@ -1,0 +1,22 @@
+db:
+  image: postgres:9.5
+  env_file: .env
+web:
+  build: .
+  env_file: .env
+  environment:
+    - PYTHONUNBUFFERED=1
+  command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; python manage.py runserver 0.0.0.0:8080; done"
+  working_dir: /app
+  volumes:
+    - .:/app
+  links:
+    - db
+nginx:
+  image: bfritscher/nginx-proxy-django
+  volumes_from:
+     - web
+  ports:
+    - "80:80"
+  links:
+    - web:web
