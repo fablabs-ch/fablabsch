@@ -20,6 +20,9 @@ SECRET_KEY = env('SECRET_KEY', default='_+rso1#3$0(@hlvg=%2j(_ly#y0a@qqi)2f(g91_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=False)
 
+FACEBOOK_ACCESS_TOKEN = env('FACEBOOK_CLIENT_ID') + '|' + env('FACEBOOK_CLIENT_SECRET')
+TWITTER_BEARER_TOKEN = env('TWITTER_BEARER_TOKEN')
+
 ALLOWED_HOSTS = ['*']
 
 
@@ -47,8 +50,11 @@ INSTALLED_APPS = (
     'import_export',
     'raven.contrib.django.raven_compat',
     'debug_toolbar',
+    'reversion',
+    'reversion_compare',
 )
 
+ADD_REVERSION_ADMIN=True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -61,9 +67,10 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'reversion.middleware.RevisionMiddleware',
 )
 
-ROOT_URLCONF = 'fablabadmin.urls'
+ROOT_URLCONF = 'fablabsch.urls'
 
 TEMPLATES = [
     {
@@ -179,6 +186,7 @@ RAVEN_CONFIG = {
     # release based on the git info.
     'release': raven.fetch_git_sha(BASE_DIR),
 }
+
 
 LOGGING = {
     'version': 1,

@@ -1,0 +1,80 @@
+<div class="space-background" style="background-image: url('{{space.background}}');">
+<div class="space-background-fill"></div>
+<section class="space margin-bottom">
+    <div id="logo" style="position:relative">
+        <img class="md-whiteframe-3dp" alt="logo" ng-src="{{space.logo}}">
+    </div>
+    <md-content layout-padding class="md-whiteframe-2dp">
+    <h1>{{space.name}}</h1>
+
+    <div layout-gt-sm="row" layout="column">
+        <div flex-gt-sm="40" layout="column" class="space-info">
+            <p ng-show="space.website">
+                <md-icon md-svg-src="images/web.svg"></md-icon> <a ng-href="{{space.website}}">{{space.website}}</a>
+            </p>
+            <p ng-show="space.facebook">
+                <md-icon md-svg-src="images/facebook.svg"></md-icon> <a href="https://facebook.com/{{space.facebook}}">{{space.facebook}}</a>
+            </p>
+            <p ng-show="space.twitter">
+                <md-icon md-svg-src="images/twitter.svg"></md-icon> <a href="https://twitter.com/{{space.twitter}}">@{{space.twitter}}</a>
+            </p>
+            <p ng-show="space.email">
+                <md-icon md-svg-src="images/email.svg"></md-icon> <a href="mailto:{{space.email}}">{{space.email}}</a>
+            </p>
+
+            <p><b>Founded:</b> {{space.founded|date:'longDate' || '?'}}</p>
+
+            <p><b>Members:</b> ~{{space.custom_data.members || '?'}}</p>
+
+            <p>
+                <b>Seen on Fablabs.io:</b> <a href="http://fablabs.io/{{space.custom_data.fablabsio}}">{{space.custom_data.fablabsio && 'yes' || 'no'}}</a>
+            </p>
+
+            <p>
+                <b>Seen on Fablab.is:</b> <a href="http://wiki.fablab.is/wiki/Portal:Labs">{{space.custom_data.fablabis && 'yes' || 'no'}}</a>
+            </p>
+
+            <p><b>Data last confirmed:</b> {{space.last_confirmed|date:'longDate' || 'n/a'}}</p>
+
+            <md-button href="https://docs.google.com/forms/d/1tPK7CAc_udVFaZOikjJVoXztbVOJ_-vZfB-Ymq2u8qw/viewform" target="_blank">Report/claim</md-button>
+
+        </div>
+        <div flex></div>
+        <div flex-gt-sm="50">
+            <p ng-bind-html="space.description|nl2br"></p>
+            <h3>Adresse</h3>
+            <ui-gmap-google-map class="space-map" center='space.map.center' zoom='space.map.zoom' options="space.map.options">
+                <ui-gmap-marker
+                    coords="space.marker.coords"
+                    options="space.marker.options"
+                    idkey="space.marker.id">
+                </ui-gmap-marker>
+            </ui-gmap-google-map>
+            <p><small>{{space.street}}<br/>
+            {{space.zip}} {{space.city}}</small></p>
+
+        </div>
+    </div>
+       <h3>Machines</h3>
+
+<div layout="row"  layout-align="start center" layout-wrap>
+   <md-card class="machine-card" ng-repeat="rs in space.resources">
+    <md-card-header>
+        <md-card-header-text>
+        <span class="md-title">{{rs.resource.model}}</span>
+        <span class="md-subhead">{{rs.resource.vendor.name}}</span>
+        </md-card-header-text>
+    </md-card-header>
+    <img ng-src="{{rs.resource.picture}}" class="md-card-image" alt="{{rs.resource.model}}">
+    <md-card-content>
+        <small>
+        <ul class="custom_data">
+            <li ng-repeat="(k, v) in rs.custom_data"><b>{{k}}:</b> {{v}}</li>
+        </ul>
+        </small>
+    </md-card-content>
+ </md-card>
+</div>
+    </md-content>
+</section>
+</div>

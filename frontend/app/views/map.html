@@ -1,0 +1,10 @@
+<ui-gmap-google-map center='map.map.center' zoom='map.map.zoom' options="map.map.options">
+        <ui-gmap-markers
+            models="map.markers"
+            coords="'coords'"
+            options="'options'">
+        </ui-gmap-marker>
+</ui-gmap-google-map>
+<md-content class="map-legend md-whiteframe-z2" layout-padding>
+    <p ng-repeat="space in map.spaces"><a ng-href="#/space/{{space.slug}}"><img ng-src="{{space.logo}}"> {{space.name}}</a></p>
+</md-content>

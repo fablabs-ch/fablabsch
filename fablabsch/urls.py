@@ -13,26 +13,30 @@ Including another URLconf
     1. Add an import:  from blog import urls as blog_urls
     2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from django.views.generic import TemplateView
 from rest_framework import routers
 
+from fablabsch import views
 
 admin.autodiscover()
 
 router = routers.DefaultRouter(trailing_slash=False)
 
 
-#router.register(r'games', views.GameViewSet)
-#router.register(r'departments', views.DepartmentViewSet)
-#router.register(r'languages', views.LanguageViewSet)
-#router.register(r'questions', views.QuestionViewSet)
+router.register(r'spaces', views.SpaceViewSet)
+router.register(r'resources', views.ResourcesViewSet)
+router.register(r'posts', views.PostViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^cron/import', views.cron_import),
+    url(r'^cron/fablabsio', views.cron_fablabsio),
+    url(r'^cron/fablabis', views.cron_fablabis),
+    url(r'^import/facebook/(?P<facebook_id>.+)$', views.facebook_page_import),
+
 ]

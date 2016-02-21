@@ -1,0 +1,37 @@
+<div layout-padding>
+    <section layout="row" class="news" layout-align="center start" layout-wrap>
+        <!-- photo, video, status, link-->
+        <md-card class="news-card" ng-repeat="p in news.posts track by p.id">
+            <md-card-header>
+                <md-card-avatar>
+                    <img class="md-user-avatar" ng-src="{{p.space.logo}}" />
+                </md-card-avatar>
+                <md-card-header-text>
+                    <span class="md-title">{{p.space.name}} {{p.type}}</span>
+                    <span class="md-subhead">{{p.created_at|date}}</span>
+                    <div class="source">
+
+                        <a ng-show="p.source_type == 'FACEBOOK'" href="https://www.facebook.com/{{p.source_id.split('_')[0]}}/posts/{{p.source_id.split('_')[1]}}"><md-icon md-svg-src="images/facebook.svg"></md-icon></a>
+                        <a ng-show="p.source_type == 'TWITTER'" href="https://www.twitter.com/{{p.space.twitter}}/status/{{p.source_id}}"><md-icon md-svg-src="images/twitter.svg"></md-icon></a>
+
+                    </div>
+                </md-card-header-text>
+            </md-card-header>
+            <a ng-href="{{p.link}}">
+                <img ng-src="{{p.images[0].src}}" class="md-card-image" alt="">
+            </a>
+            <md-card-title ng-if="p.message.split('\n\n').length > 1">
+                <md-card-title-text>
+                    <span class="md-headline"><a ng-href="{{p.link}}">{{p.message.split('\n\n')[0]}}</a></span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <p ng-bind-html="news.format(p.message)"></p>
+                <div layout="row" class="thumbs">
+                    <a ng-repeat="i in p.images.slice(1)" href="{{i.link}}" title="{{i.title}}"><img ng-src="{{i.src}}"></a>
+                </div>
+            </md-card-content>
+        </md-card>
+    </section>
+</div>
+<md-progress-linear md-mode="indeterminate"></md-progress-linear>

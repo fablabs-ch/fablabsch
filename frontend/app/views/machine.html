@@ -1,0 +1,45 @@
+<div layout-padding>
+    <section>
+        <h2>Capabilities</h2>
+        <div class="md-whiteframe-2dp" layout-padding>
+            <table class="md-table" >
+                <thead>
+                    <tr>
+                        <th>FabLab</th>
+                        <th ng-repeat="cat in machine.categories">{{cat.name}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="space in machine.spaces">
+                        <td>
+                            <a ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60">
+                            {{space.name}}</a>
+                            </td>
+                        <td ng-repeat="cat in machine.categories">{{space.machines[cat.type].length && 'Yes' || 'No'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <small>* Based on machines listed on this page</small>
+        </div>
+    </section>
+<section ng-repeat="cat in machine.categories">
+    <h2>{{cat.name}}</h2>
+    <md-card class="machine-card" ng-repeat="r in machine.machines[cat.type]">
+        <md-card-header>
+            <md-card-header-text>
+            <span class="md-title">{{r.model}}</span>
+            <span class="md-subhead">{{r.vendor.name}}</span>
+            </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{r.image}}" class="md-card-image" alt="{{r.model}}">
+        <md-card-title>
+            <md-card-title-text>
+                <span class="md-headline">Available at</span>
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+            <a ng-repeat="space in r.spaces" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60" title="{{space.name}}"></a>
+        </md-card-content>
+    </md-card>
+</section>
+</div>
