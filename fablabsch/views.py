@@ -159,11 +159,12 @@ def facebook_page_import(request, facebook_id):
 
 
 def cron_import(request):
-    space = Space.objects.get(id=1)
-    facebook_feed_import(space)
-    twitter_feed_import(space)
+    for space in Space.objects.filter(show=True):
+        facebook_feed_import(space)
+        twitter_feed_import(space)
     return HttpResponse('done')
     #compare likes?
+
 
 def cron_fablabsio(request):
     json = requests.get('https://api.fablabs.io/v0/labs.json').json()
