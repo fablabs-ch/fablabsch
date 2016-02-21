@@ -159,7 +159,7 @@ def facebook_page_import(request, facebook_id):
 
 
 def cron_import(request):
-    for space in Space.objects.filter(show=True):
+    for space in Space.objects.filter(show=True).all():
         try:
             facebook_feed_import(space)
         except Exception as e:

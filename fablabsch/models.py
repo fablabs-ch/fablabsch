@@ -2,7 +2,6 @@ from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.postgres.fields import JSONField
 
-
 class Vendor(models.Model):
     name = models.CharField(verbose_name=_('name'), max_length=30, blank=False, null=False)
     logo = models.ImageField(verbose_name=_('logo'), upload_to='vendor', blank=True, null=True)
