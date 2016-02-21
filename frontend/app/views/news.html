@@ -4,7 +4,7 @@
         <md-card class="news-card" ng-repeat="p in news.posts track by p.id">
             <md-card-header>
                 <md-card-avatar>
-                    <img class="md-user-avatar" ng-src="{{p.space.logo}}" />
+                    <a href="#/space/{{p.space.slug}}"><img class="md-user-avatar" ng-src="{{p.space.logo}}" /></a>
                 </md-card-avatar>
                 <md-card-header-text>
                     <span class="md-title">{{p.space.name}} {{p.type}}</span>
