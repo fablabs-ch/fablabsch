@@ -39,7 +39,6 @@ angular.module('frontendApp')
       };
 
       $('.main').scroll(function() {
-          console.log($('.main').scrollTop() + $('.main').height(), $('.news').height() - 400)
           if (!news.disabled && $('.main').scrollTop() + $('.main').height()>$('.news').height() -200) {
               news.loadMore();
           }
