@@ -1,6 +1,8 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.postgres.fields import JSONField
+#TODO TEST from django.core.validators import URLValidator field = models.TextField(validators=[URLValidator()])
+
 
 class Vendor(models.Model):
     name = models.CharField(verbose_name=_('name'), max_length=30, blank=False, null=False)

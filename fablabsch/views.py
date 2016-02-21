@@ -13,7 +13,7 @@ from .serializers import *
 
 from rest_framework import viewsets
 from rest_framework import permissions
-
+from django.db import transaction
 
 def facebook_feed_import(space):
     if not space.facebook:
@@ -157,9 +157,9 @@ def facebook_page_import(request, facebook_id):
     Space.objects.update_or_create(facebook=facebook_id, defaults=values)
     return HttpResponse('done')
 
-
+@transaction.non_atomic_requests
 def cron_import(request):
-    for space in Space.objects.filter(show=True).all():
+    for space in Space.objects.filter(show=True):
         try:
             facebook_feed_import(space)
         except Exception as e:
@@ -168,7 +168,6 @@ def cron_import(request):
             twitter_feed_import(space)
         except Exception as e:
             print(e)
-
     return HttpResponse('done')
     #compare likes?
 
