@@ -34,7 +34,7 @@ class Space(models.Model):
     slug = models.SlugField(verbose_name=_('slug'), blank=False, null=False)
     description = models.TextField(verbose_name=_('description'), blank=True, null=False)
     city = models.CharField(verbose_name=_('city'), max_length=100, blank=True, null=False)
-    country = models.CharField(verbose_name=_('name'), max_length=2, blank=False, null=False, default='CH')
+    country = models.CharField(verbose_name=_('country'), max_length=2, blank=False, null=False, default='CH')
     state = models.CharField(verbose_name=_('state'), max_length=20, blank=True, null=False)
     latitude = models.FloatField(verbose_name=_('latitude'),  blank=True, null=True)
     longitude = models.FloatField(verbose_name=_('latitude'),  blank=True, null=True)

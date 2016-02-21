@@ -129,6 +129,7 @@ else:
     EMAIL_HOST_USER = env('EMAIL_HOST_USER')
     EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
     EMAIL_USE_TLS = env('EMAIL_USE_TLS')
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTOCOL', 'https')
 
 DEFAULT_FROM_EMAIL=env('DJANGO_EMAIL_BACKEND', default='webmaster@localhost')
 # Internationalization
