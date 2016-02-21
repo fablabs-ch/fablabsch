@@ -160,8 +160,15 @@ def facebook_page_import(request, facebook_id):
 
 def cron_import(request):
     for space in Space.objects.filter(show=True):
-        facebook_feed_import(space)
-        twitter_feed_import(space)
+        try:
+            facebook_feed_import(space)
+        except Exception as e:
+            print(e)
+        try:
+            twitter_feed_import(space)
+        except Exception as e:
+            print(e)
+
     return HttpResponse('done')
     #compare likes?
 
