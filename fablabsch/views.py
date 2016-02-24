@@ -15,13 +15,9 @@ from rest_framework import viewsets
 from rest_framework import permissions
 from django.db import transaction
 
-def facebook_feed_import(space):
-    if not space.facebook:
-        return
 
-    graph = requests.get('https://graph.facebook.com/%s/posts?limit=100&fields=created_time,caption,description,link,message,name,full_picture,type,source,attachments{subattachments}&access_token=%s' % (space.facebook, FACEBOOK_ACCESS_TOKEN)).json()
-    for fb_post in graph['data']:
-        if not Post.objects.filter(source_type=Post.FACEBOOK, source_id=fb_post['id']).exists():
+def handle_facebook_post(space, fb_post):
+    if not Post.objects.filter(source_type=Post.FACEBOOK, source_id=fb_post['id']).exists():
             post = Post()
             post.space = space
             post.source_type = Post.FACEBOOK
@@ -94,14 +90,20 @@ def facebook_feed_import(space):
                     pi.save()
 
 
-def twitter_feed_import(space):
-    if not space.twitter:
+def facebook_feed_import(space):
+    if not space.facebook:
         return
 
-    twitter = requests.get('https://api.twitter.com/1.1/statuses/user_timeline.json?count=200&screen_name=%s&trim_user=true' % space.twitter,
-                           headers={'Authorization': 'Bearer %s' % TWITTER_BEARER_TOKEN}).json()
-    for tweet in twitter:
-        if not Post.objects.filter(source_type=Post.TWITTER, source_id=tweet['id_str']).exists():
+    graph = requests.get('https://graph.facebook.com/%s/posts?limit=100&fields=created_time,caption,description,link,message,name,full_picture,type,source,attachments{subattachments}&access_token=%s' % (space.facebook, FACEBOOK_ACCESS_TOKEN)).json()
+    for fb_post in graph['data']:
+        try:
+            handle_facebook_post(space, fb_post)
+        except Exception as e:
+            print(e)
+
+
+def handle_twitter_post(space, tweet):
+     if not Post.objects.filter(source_type=Post.TWITTER, source_id=tweet['id_str']).exists():
             #TODO handle retweet?
             #TODO handle hashtags and @mentions
             post = Post()
@@ -126,6 +128,19 @@ def twitter_feed_import(space):
                         post.type = Post.PHOTO
 
             post.save()
+
+
+def twitter_feed_import(space):
+    if not space.twitter:
+        return
+
+    twitter = requests.get('https://api.twitter.com/1.1/statuses/user_timeline.json?count=200&screen_name=%s&trim_user=true' % space.twitter,
+                           headers={'Authorization': 'Bearer %s' % TWITTER_BEARER_TOKEN}).json()
+    for tweet in twitter:
+        try:
+            handle_twitter_post(space, tweet)
+        except Exception as e:
+            print(e)
 
 
 def facebook_page_import(request, facebook_id):
