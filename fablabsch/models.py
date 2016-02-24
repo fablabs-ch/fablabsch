@@ -1,7 +1,7 @@
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.postgres.fields import JSONField
-#TODO TEST from django.core.validators import URLValidator field = models.TextField(validators=[URLValidator()])
+from django.core.validators import URLValidator
 
 
 class Vendor(models.Model):
@@ -91,7 +91,7 @@ class Post(models.Model):
     source_id = models.CharField(verbose_name=_('source id'), max_length=60, blank=True, null=False)
     space = models.ForeignKey(Space, verbose_name=_('space'), related_name='posts', on_delete=models.PROTECT)
     message = models.TextField(verbose_name=_('message'), blank=True, null=False)
-    link = models.URLField(verbose_name=_('link'), max_length=800, blank=True, null=False)
+    link = models.TextField(verbose_name=_('link'), validators=[URLValidator()], blank=True, null=False)
     show = models.BooleanField(verbose_name=_('show'), default=True)
     created_at = models.DateTimeField(verbose_name='created at', auto_created=True)
 
@@ -108,6 +108,6 @@ class PostImage(models.Model):
     width = models.PositiveIntegerField(verbose_name=_('width'), blank=True, null=True)
     height = models.PositiveIntegerField(verbose_name=_('height'), blank=True, null=True)
     title = models.TextField(verbose_name=_('title'), blank=True, null=False)
-    link = models.URLField(verbose_name=_('link'), max_length=800, blank=True, null=False)
+    link = models.TextField(verbose_name=_('link'), validators=[URLValidator()], blank=True, null=False)
     image = models.ImageField(verbose_name=_('image'), upload_to='post', blank=True, null=True)
     post = models.ForeignKey(Post, verbose_name=_('post'), related_name='images', on_delete=models.CASCADE)
