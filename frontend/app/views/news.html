@@ -1,7 +1,7 @@
 <div layout-padding>
-    <section layout="row" class="news" layout-align="center start" layout-wrap>
+    <section masonry reload-on-resize layout="row" class="news" layout-align="center start" layout-wrap>
         <!-- photo, video, status, link-->
-        <md-card class="news-card" ng-repeat="p in news.posts track by p.id">
+        <md-card class="masonry-brick news-card" ng-repeat="p in news.posts track by p.id">
             <md-card-header>
                 <md-card-avatar>
                     <a href="#/space/{{p.space.slug}}"><img class="md-user-avatar" ng-src="{{p.space.logo}}" /></a>
@@ -10,10 +10,8 @@
                     <span class="md-title">{{p.space.name}} {{p.type}}</span>
                     <span class="md-subhead">{{p.created_at|date}}</span>
                     <div class="source">
-
                         <a ng-show="p.source_type == 'FACEBOOK'" href="https://www.facebook.com/{{p.source_id.split('_')[0]}}/posts/{{p.source_id.split('_')[1]}}"><md-icon md-svg-src="images/facebook.svg"></md-icon></a>
                         <a ng-show="p.source_type == 'TWITTER'" href="https://www.twitter.com/{{p.space.twitter}}/status/{{p.source_id}}"><md-icon md-svg-src="images/twitter.svg"></md-icon></a>
-
                     </div>
                 </md-card-header-text>
             </md-card-header>
@@ -26,7 +24,7 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <p ng-bind-html="news.format(p.message)"></p>
+                <md-content ng-bind-html="news.format(p.message)"></md-content>
                 <div layout="row" class="thumbs">
                     <a ng-repeat="i in p.images.slice(1)" href="{{i.link}}" title="{{i.title}}"><img ng-src="{{i.src}}"></a>
                 </div>

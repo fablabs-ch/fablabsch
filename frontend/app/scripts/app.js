@@ -19,6 +19,7 @@ angular
     'ngSanitize',
     'ngMaterial',
     'uiGmapgoogle-maps',
+    'wu.masonry'
   ])
   .config(function ($routeProvider) {
     $routeProvider

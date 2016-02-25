@@ -196,10 +196,8 @@ dd {
     top: 0;
 }
 
-.news-card md-card-content {
+.news-card md-card-content md-content {
     max-height: 250px;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
 
 .news-card .thumbs {
