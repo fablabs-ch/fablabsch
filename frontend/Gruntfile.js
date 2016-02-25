@@ -411,6 +411,9 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             '*.{ico,png,txt}',
+            'manifest.json',
+            'safari-pinned-tab.svg',
+            'browserconfig.xml',
             '*.html',
             'scripts/lib/{,*/}*.js',
             'images/{,*/}*.{webp}',
