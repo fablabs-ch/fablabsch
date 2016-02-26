@@ -19,8 +19,8 @@ angular.module('frontendApp')
               machines[machine.type] = [];
           }
           for(var i=0; i < machines[machine.type].length; i++){
-              if(machines[machine.type].id === machine.id) {
-                  return machine;
+              if(machines[machine.type][i].id === machine.id) {
+                  return machines[machine.type][i];
               }
           }
           machine.spaces = [];
@@ -35,6 +35,16 @@ angular.module('frontendApp')
               }
           }
           machine.spaces.push(space);
+      }
+
+      machine.collectAttribute = function(attrib, list){
+          return list
+          .filter(function(item){
+              return item.custom_data && item.custom_data.hasOwnProperty(attrib);
+          })
+          .map(function(item){
+              return item.custom_data[attrib];
+          });
       }
 
       api.ready.then(function(){

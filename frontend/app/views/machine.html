@@ -15,7 +15,12 @@
                             <a ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60">
                             {{space.name}}</a>
                             </td>
-                        <td ng-repeat="cat in machine.categories">{{space.machines[cat.type].length && 'Yes' || 'No'}}</td>
+                        <td ng-repeat="cat in machine.categories" class="{{space.machines[cat.type].length && 'yes' || 'no'}}">
+                            {{space.machines[cat.type].length && 'Yes' || 'No'}}
+                            <span ng-if="cat.type == 'laser' && space.machines[cat.type].length">
+                                ({{machine.collectAttribute('power', space.machines[cat.type]).join(',')}})
+                            </span>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -24,22 +29,25 @@
     </section>
 <section ng-repeat="cat in machine.categories">
     <h2>{{cat.name}}</h2>
-    <md-card class="machine-card" ng-repeat="r in machine.machines[cat.type]">
-        <md-card-header>
-            <md-card-header-text>
-            <span class="md-title">{{r.model}}</span>
-            <span class="md-subhead">{{r.vendor.name}}</span>
-            </md-card-header-text>
-        </md-card-header>
-        <img ng-src="{{r.picture}}" class="md-card-image" alt="{{r.model}}">
-        <md-card-title>
-            <md-card-title-text>
-                <span class="md-headline">Available at</span>
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <a ng-repeat="space in r.spaces" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60" title="{{space.name}}"></a>
-        </md-card-content>
-    </md-card>
+    <div layout-align="start start" layout-wrap layout="row">
+        <md-card class="machine-card" ng-repeat="r in machine.machines[cat.type]">
+            <md-card-header>
+                <md-card-header-text>
+                <span class="md-title">{{r.model}}</span>
+                <span class="md-subhead">{{r.vendor.name}}</span>
+                </md-card-header-text>
+            </md-card-header>
+            <img ng-src="{{r.picture}}" class="md-card-image" alt="{{r.model}}">
+            <md-card-content>
+                <small>
+                <ul class="custom_data">
+                    <li ng-repeat="(k, v) in r.custom_data"><b>{{k|formatKey}}:</b> {{v}}</li>
+                </ul>
+                </small>
+                <p>Available at:</p>
+                <a ng-repeat="space in r.spaces" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60" title="{{space.name}}"></a>
+            </md-card-content>
+        </md-card>
+    </div>
 </section>
 </div>

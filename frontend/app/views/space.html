@@ -57,7 +57,7 @@
     </div>
        <h3>Machines</h3>
 
-<div layout="row"  layout-align="start center" layout-wrap>
+<div layout="row"  layout-align="start start" layout-wrap>
    <md-card class="machine-card" ng-repeat="rs in space.resources">
     <md-card-header>
         <md-card-header-text>
@@ -69,7 +69,8 @@
     <md-card-content>
         <small>
         <ul class="custom_data">
-            <li ng-repeat="(k, v) in rs.custom_data"><b>{{k}}:</b> {{v}}</li>
+            <li ng-repeat="(k, v) in rs.resource.custom_data"><b>{{k|formatKey}}:</b> {{v}}</li>
+            <li ng-repeat="(k, v) in rs.custom_data"><b>{{k|formatKey}}:</b> {{v}}</li>
         </ul>
         </small>
     </md-card-content>

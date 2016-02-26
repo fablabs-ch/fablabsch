@@ -97,6 +97,12 @@ table.md-table td
     height: 60px;
 }
 
+table.md-table td.no {
+    color: rgba(0,0,0,.5);
+}
+
+
+
 table.md-table tr:hover td{
     background-color: #eee;
 }
@@ -144,8 +150,13 @@ dd {
     margin-top: 1em;
 }
 
+
 .machine-card {
     width: 320px;
+}
+
+.machine-card .md-card-image{
+    max-height: 250px;
 }
 
 .custom_data{
