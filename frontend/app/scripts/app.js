@@ -61,4 +61,5 @@ angular
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
     });
-  })
+  });
+  

@@ -45,7 +45,7 @@ angular.module('frontendApp')
           .map(function(item){
               return item.custom_data[attrib];
           });
-      }
+      };
 
       api.ready.then(function(){
           machine.spaces = api.spaces.map(function(space){
