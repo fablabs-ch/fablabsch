@@ -51,14 +51,13 @@ angular.module('frontendApp')
                 },
                 options: {
                     icon: {
-                        url: space.logo,
+                        url: space.marker,
                         scaledSize : {width: 64, height: 64}
                     },
                     title: space.name
                 },
                 events:{
                     click: function(){
-                        //TODO use slugs?
                         $location.path('/space/' + space.slug);
                     }
                 }
