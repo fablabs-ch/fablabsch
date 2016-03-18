@@ -19,35 +19,10 @@
 
 /**
  * @ngdoc service
- * @name frontendApp.api
+ * @name frontendApp.APIENDPOINT
  * @description
- * # api
- * Service in the frontendApp.
+ * # APIENDPOINT
+ * Constant in the frontendApp.
  */
 angular.module('frontendApp')
-  .service('api', function ($http, $q, API_ENDPOINT) {
-      var api = this;
-      var ready = $q.defer();
-      api.ready = ready.promise;
-
-      $http.get(API_ENDPOINT + 'api/spaces')
-      .then(function(result){
-          api.spaces = result.data;
-          ready.resolve();
-      });
-
-      api.getSpacePromiseBySlug = function(slug){
-          var d = $q.defer();
-          api.ready.then(function(){
-              for(var i=0;  i < api.spaces.length; i++){
-                  if(api.spaces[i].slug === slug){
-                      d.resolve(api.spaces[i]);
-                      return;
-                  }
-              }
-              d.reject('NOT_FOUND');
-          });
-          return d.promise;
-      };
-
-  });
+  .constant('API_ENDPOINT', 'https://fablabs.ch/');
