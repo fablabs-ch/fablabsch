@@ -65,6 +65,7 @@ class Space(models.Model):
     facebook = models.CharField(verbose_name=_('facebook'), max_length=40, blank=True, null=True, unique=True)
     twitter = models.CharField(verbose_name=_('twitter'), max_length=40, blank=True, null=True, unique=True)
     logo = models.ImageField(verbose_name=_('logo'), upload_to='logo',blank=True, null=True)
+    marker = models.ImageField(verbose_name=_('marker'), upload_to='marker',blank=True, null=True)
     background = models.ImageField(verbose_name=_('background'), upload_to='background', blank=True, null=True)
     type = models.CharField(verbose_name=_('type'), max_length=20, blank=False, null=False, default='FabLab')
     language = models.CharField(verbose_name=_('language'), max_length=20, blank=True, null=False)

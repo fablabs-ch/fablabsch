@@ -34,7 +34,7 @@ class ResourceDownSerializer(serializers.ModelSerializer):
 class SpaceShortField(serializers.ModelSerializer):
     class Meta:
         model = Space
-        fields = ('id', 'name', 'slug', 'logo', 'facebook', 'twitter')
+        fields = ('id', 'name', 'slug', 'logo', 'marker', 'facebook', 'twitter')
 
 
 class SpaceResourceDownSerializer(serializers.ModelSerializer):

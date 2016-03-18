@@ -15,18 +15,38 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
+import os
+from io import BytesIO
+
+from django.core.files import File
+
 from django.contrib import admin
 from django.utils.html import format_html
 from reversion_compare.admin import CompareVersionAdmin
+from PIL import Image
+from .utils import drop_shadow
 
 from fablabsch.models import *
 
+
+def make_marker(modeladmin, request, queryset):
+    for space in queryset.all():
+        if space.logo:
+            image = Image.open(space.logo.file)
+            shadow = drop_shadow(image)
+            fake_file = BytesIO()
+            shadow.save(fake_file, format=image.format)
+            space.marker.save(os.path.basename(space.logo.url), File(fake_file))
+            space.save()
+
+make_marker.short_description = "Generate marker from logo"
 
 @admin.register(Space)
 class SpaceAdmin(CompareVersionAdmin):
     model = Space
     prepopulated_fields = {"slug": ("name",)}
     list_filter = ('show',)
+    actions = [make_marker]
 
 
 @admin.register(SpaceResource)
@@ -55,7 +75,6 @@ class PostImageAdmin(CompareVersionAdmin):
         if obj.src:
             return format_html('<img src="{}" style="width:200px">', obj.src)
         return obj
-
 
 
 class PostImageInline(admin.TabularInline):
