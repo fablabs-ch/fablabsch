@@ -25,7 +25,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('NewsCtrl', function ($http, API_ENDPOINT) {
+  .controller('NewsCtrl', function ($scope, $http, API_ENDPOINT) {
       var news = this;
       news.posts = [];
       news.next = API_ENDPOINT + 'api/posts?limit=10&offset=0';
@@ -55,9 +55,17 @@ angular.module('frontendApp')
           }
       };
 
-      $('.main').scroll(function() {
+      function scrollHandler() {
           if (!news.disabled && $('.main').scrollTop() + $('.main').height()>$('.news').height() -200) {
               news.loadMore();
           }
-        });
+      }
+
+      $scope.$on('$destroy', function() {
+          $('.main').unbind('scroll', scrollHandler);
+      });
+
+      $('.main').scroll(scrollHandler);
+
+
   });
