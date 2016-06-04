@@ -16,7 +16,7 @@
                             {{space.name}}</a>
                             </td>
                         <td ng-repeat="cat in machine.categories" class="{{space.machines[cat.type].length && 'yes' || 'no'}}">
-                            {{space.machines[cat.type].length && 'Yes' || 'No'}}
+                            {{space.noinfo && '???' || space.machines[cat.type].length && 'Yes' || 'No'}}
                             <span ng-if="cat.type == 'laser' && space.machines[cat.type].length">
                                 ({{machine.collectAttribute('power', space.machines[cat.type]).join(',')}})
                             </span>

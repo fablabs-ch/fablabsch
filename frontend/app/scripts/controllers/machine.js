@@ -75,6 +75,10 @@ angular.module('frontendApp')
                   addSpace(m, space);
                   space.machines[rs.resource.type].push(rs);
               });
+              if (Object.keys(space.machines).length === 0) {
+                  space.noinfo = true;
+              }
+
 
               return space;
           });
