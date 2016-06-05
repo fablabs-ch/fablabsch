@@ -18,12 +18,6 @@
 'use strict';
 
 (function () {
-    angular.module('frontendApp')
-    .component('spaceFilter', {
-        templateUrl: 'views/space_filter.html',
-        controller: SpacefilterCtrl,
-    });
-
     /* @ngInject */
     function SpacefilterCtrl (api) {
         var $ctrl = this;
@@ -32,4 +26,10 @@
             $ctrl.spaces = api.spaces.slice(0).reverse();
         });
     }
+
+    angular.module('frontendApp')
+    .component('spaceFilter', {
+        templateUrl: 'views/space_filter.html',
+        controller: SpacefilterCtrl,
+    });
 })();

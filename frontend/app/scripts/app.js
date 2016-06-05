@@ -86,7 +86,6 @@ angular
     });
   })
   .config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
     $mdThemingProvider.definePalette('amazingPaletteName', {
     '50': 'e10707',
     '100': 'e10707',
@@ -110,4 +109,5 @@ angular
   });
   $mdThemingProvider.theme('default')
     .primaryPalette('amazingPaletteName')
+    .accentPalette('amazingPaletteName');
 });

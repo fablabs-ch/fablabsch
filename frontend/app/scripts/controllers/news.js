@@ -32,7 +32,6 @@ angular.module('frontendApp')
       news.disabled = true;
 
       news.loadMore = function(){
-          console.log(news.next);
           news.disabled = true;
         if(news.next){
             $http.get(news.next)
