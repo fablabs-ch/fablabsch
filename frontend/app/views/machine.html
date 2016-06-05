@@ -12,7 +12,7 @@
                 <tbody>
                     <tr ng-repeat="space in machine.spaces">
                         <td>
-                            <a ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60">
+                            <a class="space-logo" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}">
                             {{space.name}}</a>
                             </td>
                         <td ng-repeat="cat in machine.categories" class="{{space.machines[cat.type].length && 'yes' || 'no'}}">
@@ -45,7 +45,7 @@
                 </ul>
                 </small>
                 <p>Available at:</p>
-                <a ng-repeat="space in r.spaces" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" width="60" height="60" title="{{space.name}}"></a>
+                <a class="space-logo" ng-repeat="space in r.spaces" ng-href="#/space/{{space.slug}}"><img alt="logo" ng-src="{{space.logo}}" title="{{space.name}}"></a>
             </md-card-content>
         </md-card>
     </div>
