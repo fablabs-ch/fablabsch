@@ -101,3 +101,9 @@ class PostImageInline(admin.TabularInline):
 class PostAdmin(CompareVersionAdmin):
     inlines = (PostImageInline,)
 
+
+@admin.register(Event)
+class EventAdmin(CompareVersionAdmin):
+    date_hierarchy = 'startdate'
+    list_filter = ('space',)
+    list_display = ('summary', 'space', 'startdate', 'enddate')

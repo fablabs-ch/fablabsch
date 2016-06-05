@@ -78,3 +78,9 @@ class PostSerializer(serializers.ModelSerializer):
         model = Post
     images = PostImageSerializer(many=True, read_only=True)
     space = SpaceShortField(read_only=True)
+
+
+class EventSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Event
+    space = SpaceShortField(read_only=True)

@@ -201,7 +201,8 @@ JET_SIDE_MENU_CUSTOM_APPS = [
         'Resource',
         'Vendor',
         'SpaceResource',
-        'Post'
+        'Post',
+        'Event'
     ]),
     ('auth', ['__all__']),
     #('reversion', ['__all__']),

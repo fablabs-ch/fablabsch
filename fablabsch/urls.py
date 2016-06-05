@@ -46,6 +46,7 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'spaces', views.SpaceViewSet)
 router.register(r'resources', views.ResourcesViewSet)
 router.register(r'posts', views.PostViewSet)
+router.register(r'events', views.EventViewSet, base_name='event')
 
 urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
@@ -57,6 +58,7 @@ urlpatterns = [
     url(r'^cron/import', views.cron_import),
     url(r'^cron/fablabsio', views.cron_fablabsio),
     url(r'^cron/fablabis', views.cron_fablabis),
+    url(r'^cron/events', views.ical_import),
     url(r'^import/facebook/(?P<facebook_id>.+)$', views.facebook_page_import),
-
+    
 ]

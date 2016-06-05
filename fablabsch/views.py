@@ -18,7 +18,7 @@
 
 import pprint
 import re
-from datetime import datetime
+from datetime import datetime, date
 import xml.etree.ElementTree as ET
 
 from django.core.mail import send_mail
@@ -32,6 +32,8 @@ from .serializers import *
 from rest_framework import viewsets
 from rest_framework import permissions
 from django.db import transaction
+from icalendar import Calendar
+from rest_framework import filters
 
 
 def handle_facebook_post(space, fb_post):
@@ -193,6 +195,7 @@ def facebook_page_import(request, facebook_id):
 @transaction.non_atomic_requests
 def cron_import(request):
     for space in Space.objects.filter(show=True):
+        #TODO: handle errors
         try:
             facebook_feed_import(space)
         except Exception as e:
@@ -242,8 +245,48 @@ def cron_fablabis(request):
 
     return HttpResponse()
 
-#API
+@transaction.non_atomic_requests
+def ical_import(request):
+    for space in Space.objects.filter(events_ics__startswith="http").all():
+        try:
+            gcal = Calendar.from_ical(requests.get(space.events_ics).text)
+            for component in gcal.walk():
+                if component.name == 'VEVENT':
+                    e = Event()
+                    e.space = space
+                    e.uid = component.get('UID')
+                    e.startdate = component.get('DTSTART').dt
+                    e.enddate = component.get('DTEND').dt
+                    e.summary = component.get('SUMMARY')
+                    e.description = component.get('DESCRIPTION')
+                    # can be null
+                    if component.get('LAST-MODIFIED'):
+                        e.modified = component.get('LAST-MODIFIED').dt
+                    else:
+                        e.modified = component.get('DTSTAMP').dt
+                    e.location = component.get('LOCATION')
+                    # can be single or list
+                    attach = component.get('ATTACH')
+                    if attach:
+                        if not isinstance(component.get('attach'), str):
+                            # for now only handle first attachment
+                            attach = attach[0]
+                        # fix drive links
+                        m = re.search(r'drive.google.*/(.*)/view', attach)
+                        if m:
+                            attach = 'https://drive.google.com/uc?export=download&id=%s' % m.group(1)
+                        e.image_src = attach
+                    e.save()
+                    # link, categorie LAST-MODIFIED else DTSTAMP
+                    # Location
+                    # URL
+        except Exception as e:
+            print(e)
 
+    return HttpResponse()
+
+
+#API
 class SpaceViewSet(viewsets.ModelViewSet):
     # TODO object based permissions
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
@@ -264,3 +307,20 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.filter(show=True).order_by('-created_at').all()
     serializer_class = PostSerializer
     pagination_class = LimitOffsetPagination
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    # TODO object based permissions
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
+    serializer_class = EventSerializer
+    pagination_class = LimitOffsetPagination
+
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        direction = self.request.query_params.get('direction', '1')
+        # future and ongoing
+        if direction == '1':
+            queryset = queryset.filter(enddate__gte=date.today())
+        else:
+            queryset = queryset.filter(enddate__lt=date.today())
+        return queryset

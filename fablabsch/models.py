@@ -80,6 +80,7 @@ class Space(models.Model):
     last_confirmed = models.DateField(verbose_name=_('last confirmed'), blank=True, null=True)
     show = models.BooleanField(verbose_name=_('show'), default=False)
     custom_data = JSONField(verbose_name=_('custom data'), blank=True, null=True)
+    events_ics = models.URLField(verbose_name=_('events_ics'), max_length=800, blank=True, null=False)
 
     class Meta:
         ordering = ('name',)
@@ -142,3 +143,22 @@ class PostImage(models.Model):
     link = models.TextField(verbose_name=_('link'), validators=[URLValidator()], blank=True, null=False)
     image = models.ImageField(verbose_name=_('image'), upload_to='post', blank=True, null=True)
     post = models.ForeignKey(Post, verbose_name=_('post'), related_name='images', on_delete=models.CASCADE)
+
+
+class Event(models.Model):
+    uid = models.CharField(verbose_name=_('uid'), max_length=200, blank=False, null=False, primary_key=True)
+    startdate = models.DateTimeField(verbose_name='startdate', blank=False)
+    enddate = models.DateTimeField(verbose_name='enddate', blank=False)
+    modified = models.DateTimeField(verbose_name='modified', blank=False)
+    summary = models.TextField(verbose_name=_('summary'), blank=True, null=False)
+    description = models.TextField(verbose_name=_('description'), blank=True, null=False)
+    location = models.CharField(verbose_name=_('location'), max_length=200, blank=True, null=False)
+    image_src = models.URLField(verbose_name=_('external image url'), max_length=800, blank=True, null=False)
+    image = models.ImageField(verbose_name=_('image'), upload_to='event', blank=True, null=True)
+    space = models.ForeignKey(Space, verbose_name=_('space'), related_name='events', on_delete=models.CASCADE)
+
+    class Meta:
+        ordering = ('-startdate',)
+
+    def __str__(self):
+        return u'%s %s %s' % (self.summary, self.startdate, self.enddate)
