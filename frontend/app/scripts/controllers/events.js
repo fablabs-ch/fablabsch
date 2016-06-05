@@ -29,7 +29,6 @@ angular.module('frontendApp')
     var events = this;
     events.mode = 1;
     events.events = [];
-    API_ENDPOINT = 'http://192.168.99.100/';
 
    // TODO: refactor? similar code as in news...
    $scope.$watch('events.mode', function(){
