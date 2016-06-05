@@ -44,7 +44,7 @@ make_marker.short_description = "Generate marker from logo"
 
 class SpaceResourceInline(admin.StackedInline):
     model = SpaceResource
-    extra = 0
+    extra = 1
 
 @admin.register(Space)
 class SpaceAdmin(CompareVersionAdmin):
