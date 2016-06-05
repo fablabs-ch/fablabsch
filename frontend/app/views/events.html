@@ -31,12 +31,12 @@
         </md-card-title-text>
     </md-card-title>
     <md-card-content>
-        <md-content ng-bind-html="e.description"></md-content>
+        <md-content ng-bind-html="e.description" linkify></md-content>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
         <div layout="row" layout-wrap><span ng-repeat="tag in e.tags" class="tag">{{tag}}</span></div>
         <span flex></span>
-        <md-button class="md-primary" target="_blank" ng-href="{{e.link}}">Info</md-button>
+        <md-button ng-if="e.link" class="md-primary" target="_blank" ng-href="{{e.link}}">Info</md-button>
     </md-card-actions>
 </md-card>
 

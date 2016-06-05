@@ -56,6 +56,15 @@ angular.module('frontendApp')
                                 e.enddate.getYear() === e.startdate.getYear());
       e.hasEndDateTime = !(e.enddate.getHours() === 0 && e.enddate.getMinutes() === 0);
 
+      //grab first link
+      if (e.description){
+        var match = e.description.match( /(?:https?\:\/\/|www\.)+(?![^\s]*?")([\w.,@?!^=%&amp;:\/~+#-]*[\w@?!^=%&amp;\/~+#-])?/i);
+        if (match) {
+          e.link = match[0];
+        }
+      }
+
+
         var tags = e.description.match(/#[a-z]+/gi) || [];
         e.tags = [];
         tags.forEach(function(tag) {
@@ -74,9 +83,7 @@ angular.module('frontendApp')
         if(events.next){
             $http.get(events.next)
             .then(function(results){
-              console.log(results);
                 var newEvents = transform(results.data.results);
-                console.log(newEvents);
                 events.events = events.events.concat(newEvents);
                 events.next = results.data.next;
                 events.disabled = false;
