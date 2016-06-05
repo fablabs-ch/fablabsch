@@ -34,7 +34,7 @@ class Vendor(models.Model):
 
     @staticmethod
     def autocomplete_search_fields():
-        return 'name'
+        return 'name',
 
 
 class Resource(models.Model):
@@ -89,7 +89,7 @@ class Space(models.Model):
 
     @staticmethod
     def autocomplete_search_fields():
-        return 'name'
+        return 'name',
 
 
 class SpaceResource(models.Model):
