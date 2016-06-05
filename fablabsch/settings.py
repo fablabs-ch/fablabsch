@@ -56,6 +56,8 @@ LANGUAGES = [
 
 INSTALLED_APPS = (
     'fablabsch',
+    #'jet.dashboard',
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -72,7 +74,7 @@ INSTALLED_APPS = (
     'reversion_compare',
 )
 
-ADD_REVERSION_ADMIN=True
+ADD_REVERSION_ADMIN = True
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -188,6 +190,22 @@ CORS_ORIGIN_WHITELIST = (
     'localhost:9000',
 )
 CORS_URLS_REGEX = r'^/api/.*$'
+
+
+# JET ADMIN CONFIG
+JET_SIDE_MENU_COMPACT = True
+JET_DEFAULT_THEME = 'light-gray'
+JET_SIDE_MENU_CUSTOM_APPS = [
+    ('fablabsch', [
+        'Space',
+        'Resource',
+        'Vendor',
+        'SpaceResource',
+        'Post'
+    ]),
+    ('auth', ['__all__']),
+    #('reversion', ['__all__']),
+]
 
 
 #

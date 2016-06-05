@@ -32,6 +32,10 @@ class Vendor(models.Model):
     def __str__(self):
         return u'%s' % self.name
 
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'name'
+
 
 class Resource(models.Model):
     model = models.CharField(verbose_name=_('model'), max_length=30, blank=False, null=False)
@@ -46,6 +50,10 @@ class Resource(models.Model):
 
     def __str__(self):
         return u'%s (%s)' % (self.model, self.vendor.name)
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'model', 'type', 'vendor__name'
 
 
 class Space(models.Model):
@@ -78,6 +86,10 @@ class Space(models.Model):
 
     def __str__(self):
         return u'%s' % self.name
+
+    @staticmethod
+    def autocomplete_search_fields():
+        return 'name'
 
 
 class SpaceResource(models.Model):

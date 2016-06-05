@@ -41,22 +41,30 @@ def make_marker(modeladmin, request, queryset):
 
 make_marker.short_description = "Generate marker from logo"
 
+
+class SpaceResourceInline(admin.StackedInline):
+    model = SpaceResource
+    extra = 0
+
 @admin.register(Space)
 class SpaceAdmin(CompareVersionAdmin):
     model = Space
     prepopulated_fields = {"slug": ("name",)}
     list_filter = ('show',)
     actions = [make_marker]
+    inlines = (SpaceResourceInline,)
 
 
 @admin.register(SpaceResource)
 class SpaceResourceAdmin(CompareVersionAdmin):
-    pass
+    list_filter = ('space__name', 'resource__type')
 
 
 @admin.register(Resource)
 class ResourceAdmin(CompareVersionAdmin):
-    pass
+    list_display = ('model', 'vendor', 'type')
+    list_filter = ('vendor','type')
+    inlines = (SpaceResourceInline,)
 
 
 @admin.register(Vendor)

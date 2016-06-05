@@ -48,6 +48,8 @@ router.register(r'resources', views.ResourcesViewSet)
 router.register(r'posts', views.PostViewSet)
 
 urlpatterns = [
+    url(r'^jet/', include('jet.urls', 'jet')),
+    #url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
