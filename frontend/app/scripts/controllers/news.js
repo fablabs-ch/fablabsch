@@ -25,7 +25,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('NewsCtrl', function ($scope, $http, API_ENDPOINT) {
+  .controller('NewsCtrl', function ($scope, $http, api, API_ENDPOINT) {
       var news = this;
       news.posts = [];
       news.next = API_ENDPOINT + 'api/posts?limit=10&offset=0';
@@ -44,6 +44,10 @@ angular.module('frontendApp')
         }
       };
       news.loadMore();
+
+      this.inFilter = function(n){
+          return api.inFilterSpace(n.space);
+      };
 
 
       this.format = function (message) {

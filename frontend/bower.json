@@ -11,7 +11,7 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-material": "^1.0.5",
-    "angular-google-maps": "^2.3.2",
+    "angular-google-maps": "2.3.2",
     "jquery": "^2.2.0",
     "angular-masonry": "^0.16.0"
   },

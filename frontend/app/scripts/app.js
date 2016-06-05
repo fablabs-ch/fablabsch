@@ -46,6 +46,11 @@ angular
         controller: 'NewsCtrl',
         controllerAs: 'news'
       })
+      .when('/events', {
+        templateUrl: 'views/events.html',
+        controller: 'EventsCtrl',
+        controllerAs: 'events'
+      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -79,4 +84,30 @@ angular
     uiGmapGoogleMapApiProvider.configure({
         //    key: 'your api key',
     });
+  })
+  .config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    $mdThemingProvider.definePalette('amazingPaletteName', {
+    '50': 'e10707',
+    '100': 'e10707',
+    '200': 'e10707',
+    '300': 'e10707',
+    '400': 'e10707',
+    '500': 'e10707',
+    '600': 'e10707',
+    '700': 'e10707',
+    '800': 'e10707',
+    '900': 'e10707',
+    'A100': 'e10707',
+    'A200': 'e10707',
+    'A400': 'e10707',
+    'A700': 'e10707',
+    'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+                                        // on this palette should be dark or light
+    'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+     '200', '300', '400', 'A100'],
+    'contrastLightColors': undefined    // could also specify this if default was 'dark'
   });
+  $mdThemingProvider.theme('default')
+    .primaryPalette('amazingPaletteName')
+});

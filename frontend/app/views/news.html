@@ -1,7 +1,8 @@
+<space-filter></space-filter>
 <div layout-padding>
     <section masonry reload-on-resize layout="row" class="news" layout-align="center start" layout-wrap>
         <!-- photo, video, status, link-->
-        <md-card class="masonry-brick news-card" ng-repeat="p in news.posts track by p.id">
+        <md-card class="masonry-brick news-card" ng-repeat="p in news.posts| filter: news.inFilter track by p.id">
             <md-card-header>
                 <md-card-avatar>
                     <a href="#/space/{{p.space.slug}}"><img class="md-user-avatar" ng-src="{{p.space.logo}}" /></a>

@@ -6,5 +6,8 @@
         </ui-gmap-marker>
 </ui-gmap-google-map>
 <md-content class="map-legend md-whiteframe-z2" layout-padding>
-    <p ng-repeat="space in map.spaces"><a ng-href="#/space/{{space.slug}}"><img ng-src="{{space.logo}}"> {{space.name}}</a></p>
+    <a ng-repeat="space in map.spaces" layout="row" layout-align="start center" ng-href="#/space/{{space.slug}}">
+        <img ng-src="{{space.logo}}">
+        <span>{{space.name}}</span>
+    </a>
 </md-content>

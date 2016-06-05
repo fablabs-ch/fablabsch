@@ -8,6 +8,10 @@
   padding: 0.2em 0;
 }
 
+md-toolbar.bg-red {
+    background-color: #e10707;
+}
+
 .angular-google-map-container {
     height: calc(100vh - 70px);
     min-height: 400px;
@@ -40,10 +44,11 @@
  margin: 0.5em 0;
 }
 
-a, .md-button  .md-list-item-inner  {
+md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised), a, .md-button  .md-list-item-inner  {
     color: #e10707;
     text-decoration: none;
 }
+
 
 a:hover {
     text-decoration: underline;
@@ -167,19 +172,18 @@ dd {
 
 .map-legend{
     position: absolute;
-    width: 200px;
+    width: 250px;
     top: 20px;
     right: 20px;
     max-height: 80vh;
 }
 
-.map-legend p {
+.map-legend a {
     overflow: hidden;
-    white-space: nowrap;
     margin: 0;
 }
 
-.map-legend p:hover {
+.map-legend a:hover {
     background-color: #eee;
 }
 
@@ -187,6 +191,38 @@ dd {
     width: 60px;
     height: 60px;
     vertical-align: middle;
+    margin-right: 10px;
+}
+
+.filter-space {
+    margin: 10px;
+}
+
+
+.filter-space img {
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+    opacity: 0.5;
+}
+
+md-fab-actions {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-direction: row;
+}
+
+
+.filter-space.filter-on img {
+    opacity: 1;
+}
+
+.tag {
+    padding-right: 4px;
+}
+
+md-card-actions {
+    color: #e10707;
 }
 
 .news-card {
@@ -219,6 +255,11 @@ dd {
 .news-card .thumbs img {
     height: 60px;
 }
+
+.news-card md-card-content md-content {
+    overflow: hidden;
+}
+
 
 @media (max-width: 600px) {
   table.md-table td{

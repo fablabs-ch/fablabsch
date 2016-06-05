@@ -1,0 +1,15 @@
+<md-fab-toolbar md-direction="left">
+<md-fab-trigger class="align-with-text">
+    <md-button aria-label="menu" class="md-fab md-primary">
+    <md-icon md-svg-src="images/filter-outline.svg">filter</md-icon>
+    </md-button>
+</md-fab-trigger>
+<md-toolbar>
+    <md-fab-actions class="md-toolbar-tools">
+        <div class="filter-space" title="" ng-class="{'filter-on': space.visible}"
+        ng-repeat="space in $ctrl.spaces" ng-click="$event.stopPropagation();$ctrl.api.toggleSpaceFilter(space)">
+            <img ng-src="{{space.logo}}" title="{{space.name}}">
+         </div>
+    </md-fab-actions>
+</md-toolbar>
+</md-fab-toolbar>

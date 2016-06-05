@@ -26,6 +26,7 @@
  */
 angular.module('frontendApp')
   .service('api', function ($http, $q, API_ENDPOINT) {
+      var FILTER_SPACE_KEY = 'filter_space';
       var api = this;
       var ready = $q.defer();
       api.ready = ready.promise;
@@ -33,6 +34,21 @@ angular.module('frontendApp')
       $http.get(API_ENDPOINT + 'api/spaces')
       .then(function(result){
           api.spaces = result.data;
+          var rawFilter = localStorage.getItem(FILTER_SPACE_KEY);
+          if (rawFilter) {
+              api.filterSpace = JSON.parse(rawFilter);
+          } else {
+              api.filterSpace = {};
+          }
+          api.spaces.forEach(function (s) {
+              if (api.filterSpace.hasOwnProperty(s.slug)) {
+                  s.visible = api.inFilterSpace(s);
+              } else {
+                  // by default display new spaces
+                  api.toggleSpaceFilter(s);
+              }
+
+          });
           ready.resolve();
       });
 
@@ -49,5 +65,17 @@ angular.module('frontendApp')
           });
           return d.promise;
       };
+
+      api.inFilterSpace = function (space) {
+         return api.filterSpace && api.filterSpace.hasOwnProperty(space.slug) && api.filterSpace[space.slug];
+      };
+
+      api.toggleSpaceFilter = function (space) {
+        var visible = api.inFilterSpace(space);
+        api.filterSpace[space.slug] = !visible;
+        space.visible = !visible;
+        localStorage.setItem(FILTER_SPACE_KEY, JSON.stringify(api.filterSpace));
+      };
+
 
   });
