@@ -320,7 +320,7 @@ class EventViewSet(viewsets.ModelViewSet):
         direction = self.request.query_params.get('direction', '1')
         # future and ongoing
         if direction == '1':
-            queryset = queryset.filter(enddate__gte=date.today())
+            queryset = queryset.filter(enddate__gte=date.today()).order_by('startdate')
         else:
-            queryset = queryset.filter(enddate__lt=date.today())
+            queryset = queryset.filter(enddate__lt=date.today()).order_by('-startdate')
         return queryset

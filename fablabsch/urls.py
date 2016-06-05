@@ -60,5 +60,5 @@ urlpatterns = [
     url(r'^cron/fablabis', views.cron_fablabis),
     url(r'^cron/events', views.ical_import),
     url(r'^import/facebook/(?P<facebook_id>.+)$', views.facebook_page_import),
-    
+
 ]
