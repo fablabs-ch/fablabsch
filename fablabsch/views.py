@@ -248,10 +248,18 @@ def cron_fablabis(request):
 @transaction.non_atomic_requests
 def ical_import(request):
     for space in Space.objects.filter(events_ics__startswith="http").all():
+        filter = None
+        try:
+            if space.custom_data and 'events_ics_filter' in space.custom_data:
+                filter = re.compile(space.custom_data['events_ics_filter'])
+        except Exception as e:
+            print('REGEX_ERROR', e)
+
         try:
             gcal = Calendar.from_ical(requests.get(space.events_ics).text)
             for component in gcal.walk():
-                if component.name == 'VEVENT':
+                if component.name == 'VEVENT' and (filter is None or (component.get('DESCRIPTION') is not None and
+                                                                      filter.search(component.get('DESCRIPTION')))):
                     e = Event()
                     e.space = space
                     e.uid = component.get('UID')
