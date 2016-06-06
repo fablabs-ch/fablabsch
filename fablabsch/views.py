@@ -251,7 +251,7 @@ def ical_import(request):
         try:
             gcal = Calendar.from_ical(requests.get(space.events_ics).text)
             for component in gcal.walk():
-                if component.name == 'VEVENT':
+                if component.name == 'VEVENT' and "#" in component.get('DESCRIPTION'):
                     e = Event()
                     e.space = space
                     e.uid = component.get('UID')
