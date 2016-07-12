@@ -36,7 +36,7 @@ from icalendar import Calendar
 from rest_framework import filters
 
 
-def handle_facebook_post(space, fb_post):
+def handle_facebook_post(space, fb_post, filter):
     if not Post.objects.filter(source_type=Post.FACEBOOK, source_id=fb_post['id']).exists():
             post = Post()
             post.space = space
@@ -109,56 +109,74 @@ def handle_facebook_post(space, fb_post):
                     pi.post = post
                     pi.save()
 
+            if filter and not filter.search(post.message):
+                post.delete()
+
 
 def facebook_feed_import(space):
     if not space.facebook:
         return
 
+    filter = None
+    try:
+        if space.custom_data and 'facebook_filter' in space.custom_data:
+            filter = re.compile(space.custom_data['facebook_filter'])
+    except Exception as e:
+        print('REGEX_ERROR', e)
+
     graph = requests.get('https://graph.facebook.com/%s/posts?limit=100&fields=created_time,caption,description,link,message,name,full_picture,type,source,attachments{subattachments}&access_token=%s' % (space.facebook, FACEBOOK_ACCESS_TOKEN)).json()
     for fb_post in graph['data']:
         try:
-            handle_facebook_post(space, fb_post)
+            handle_facebook_post(space, fb_post, filter)
         except Exception as e:
             print(e)
 
 
-def handle_twitter_post(space, tweet):
+def handle_twitter_post(space, tweet, filter):
      if not Post.objects.filter(source_type=Post.TWITTER, source_id=tweet['id_str']).exists():
-            #TODO handle retweet?
-            #TODO handle hashtags and @mentions
-            post = Post()
-            post.space = space
-            post.source_type = Post.TWITTER
-            post.source_id = tweet['id_str']
-            post.created_at = datetime.strptime(tweet['created_at'],'%a %b %d %H:%M:%S +0000 %Y')
-            message = tweet['text']
-            if 'entities' in tweet and 'urls' in tweet['entities']:
-                for url in tweet['entities']['urls']:
-                    message = message.replace(url['url'], '<a href="%s">%s</a>' % (url['expanded_url'], url['display_url']))
-            post.message = message
-            post.type = Post.STATUS
-            post.save()
-            if 'extended_entities' in tweet and 'media' in tweet['extended_entities']:
-                for media in tweet['extended_entities']['media']:
-                    if media['type'] == 'photo':
-                        image = PostImage()
-                        image.src = media['media_url']
-                        image.post = post
-                        image.save()
-                        post.type = Post.PHOTO
+            if filter is None or filter.search(tweet['text']):
+                #TODO handle retweet?
+                #TODO handle hashtags and @mentions
+                post = Post()
+                post.space = space
+                post.source_type = Post.TWITTER
+                post.source_id = tweet['id_str']
+                post.created_at = datetime.strptime(tweet['created_at'],'%a %b %d %H:%M:%S +0000 %Y')
+                message = tweet['text']
+                if 'entities' in tweet and 'urls' in tweet['entities']:
+                    for url in tweet['entities']['urls']:
+                        message = message.replace(url['url'], '<a href="%s">%s</a>' % (url['expanded_url'], url['display_url']))
+                post.message = message
+                post.type = Post.STATUS
+                post.save()
+                if 'extended_entities' in tweet and 'media' in tweet['extended_entities']:
+                    for media in tweet['extended_entities']['media']:
+                        if media['type'] == 'photo':
+                            image = PostImage()
+                            image.src = media['media_url']
+                            image.post = post
+                            image.save()
+                            post.type = Post.PHOTO
 
-            post.save()
+                post.save()
 
 
 def twitter_feed_import(space):
     if not space.twitter:
         return
 
+    filter = None
+    try:
+        if space.custom_data and 'twitter_filter' in space.custom_data:
+            filter = re.compile(space.custom_data['twitter_filter'])
+    except Exception as e:
+        print('REGEX_ERROR', e)
+
     twitter = requests.get('https://api.twitter.com/1.1/statuses/user_timeline.json?count=200&screen_name=%s&trim_user=true' % space.twitter,
                            headers={'Authorization': 'Bearer %s' % TWITTER_BEARER_TOKEN}).json()
     for tweet in twitter:
         try:
-            handle_twitter_post(space, tweet)
+            handle_twitter_post(space, tweet, filter)
         except Exception as e:
             print(e)
 
