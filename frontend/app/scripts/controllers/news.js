@@ -25,7 +25,7 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('NewsCtrl', function ($scope, $http, api, API_ENDPOINT) {
+  .controller('NewsCtrl', function ($scope, $http, $filter, api, API_ENDPOINT) {
       var news = this;
       news.posts = [];
       news.next = API_ENDPOINT + 'api/posts?limit=10&offset=0';
@@ -39,6 +39,9 @@ angular.module('frontendApp')
                 news.posts = news.posts.concat(results.data.results);
                 news.next = results.data.next;
                 news.disabled = false;
+                if ($filter('filter')(news.posts, news.inFilter).length < 1) {
+                    news.loadMore();
+                }
             });
         }
       };
