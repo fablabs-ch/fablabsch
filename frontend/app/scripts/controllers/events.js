@@ -91,7 +91,7 @@ angular.module('frontendApp')
       };
 
       events.inFilter = function(e){
-          return api.inFilterSpace(e.space);
+          return api.isSpaceVisible(e.space);
       };
 
 

@@ -10,6 +10,7 @@
         ng-repeat="space in $ctrl.spaces" ng-click="$event.stopPropagation();$ctrl.api.toggleSpaceFilter(space)">
             <img ng-src="{{space.logo}}" title="{{space.name}}">
          </div>
+         <div class="filter-space" ng-click="$event.stopPropagation();$ctrl.api.toggleSpaceFilterAll(true)">ALL</div>
     </md-fab-actions>
 </md-toolbar>
 </md-fab-toolbar>

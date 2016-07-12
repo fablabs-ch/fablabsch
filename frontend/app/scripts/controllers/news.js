@@ -45,7 +45,7 @@ angular.module('frontendApp')
       news.loadMore();
 
       this.inFilter = function(n){
-          return api.inFilterSpace(n.space);
+          return api.isSpaceVisible(n.space);
       };
 
 

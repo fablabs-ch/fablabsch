@@ -40,14 +40,24 @@ angular.module('frontendApp')
           } else {
               api.filterSpace = {};
           }
+          var existingSpaces = [];
           api.spaces.forEach(function (s) {
+              existingSpaces.push(s.slug);
               if (api.filterSpace.hasOwnProperty(s.slug)) {
-                  s.visible = api.inFilterSpace(s);
+                  s.visible = api.isSpaceVisible(s);
               } else {
                   // by default display new spaces
-                  api.toggleSpaceFilter(s);
+                  s.visible = true;
+                  api.filterSpace[s.slug] = true;
+                  api.saveFilter();
               }
 
+          });
+          Object.keys(api.filterSpace).forEach(function(key){
+              if (existingSpaces.indexOf(key) <= 0) {
+                  delete api.filterSpace[key];
+                  api.saveFilter();
+              }
           });
           ready.resolve();
       });
@@ -66,15 +76,46 @@ angular.module('frontendApp')
           return d.promise;
       };
 
-      api.inFilterSpace = function (space) {
+      api.isSpaceVisible = function (space) {
          return api.filterSpace && api.filterSpace.hasOwnProperty(space.slug) && api.filterSpace[space.slug];
       };
 
+      api.allSpaceVisible = function () {
+          return Object.keys(api.filterSpace).every(function(key){
+              return api.filterSpace[key];
+          });
+      };
+
+      api.noSpaceVisible = function () {
+          return Object.keys(api.filterSpace).every(function(key){
+              return !api.filterSpace[key];
+          });
+      };
+
+      api.toggleSpaceFilterAll = function (visible) {
+           api.spaces.forEach(function(space) {
+               space.visible = visible;
+               api.filterSpace[space.slug] = visible;
+           });
+           api.saveFilter();
+      };
+
       api.toggleSpaceFilter = function (space) {
-        var visible = api.inFilterSpace(space);
+        var visible = api.isSpaceVisible(space);
+        if (api.allSpaceVisible()) {
+            api.toggleSpaceFilterAll(false);
+            visible = !visible;
+        }
         api.filterSpace[space.slug] = !visible;
         space.visible = !visible;
-        localStorage.setItem(FILTER_SPACE_KEY, JSON.stringify(api.filterSpace));
+        if (api.noSpaceVisible()) {
+            api.toggleSpaceFilterAll(true);
+        }
+	    api.saveFilter();
+      };
+
+      api.saveFilter = function () {
+          localStorage.setItem(FILTER_SPACE_KEY, JSON.stringify(api.filterSpace));
       };
 
 
