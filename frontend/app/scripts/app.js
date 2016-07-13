@@ -40,7 +40,12 @@ angular
     'wu.masonry',
     'linkify'
   ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, API_ENDPOINT, $sceDelegateProvider) {
+    $sceDelegateProvider.resourceUrlWhitelist([
+      // Allow same origin resource loads.
+      'self',
+      // Allow loading from our assets domain.  Notice the difference between * and **.
+      API_ENDPOINT + '**']);
     $routeProvider
       .when('/news', {
         templateUrl: 'views/news.html',
@@ -76,6 +81,11 @@ angular
         templateUrl: 'views/machine.html',
         controller: 'MachineCtrl',
         controllerAs: 'machine'
+      })
+      .when('/page/:name*', {
+         templateUrl: function(urlattr){
+          return API_ENDPOINT + 'pages/' + urlattr.name + '.html';
+         }
       })
       .otherwise({
         redirectTo: '/news'
