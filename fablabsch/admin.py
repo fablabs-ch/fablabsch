@@ -107,3 +107,9 @@ class EventAdmin(CompareVersionAdmin):
     date_hierarchy = 'startdate'
     list_filter = ('space',)
     list_display = ('summary', 'space', 'startdate', 'enddate')
+
+
+@admin.register(Page)
+class PageAdmin(CompareVersionAdmin):
+    list_display = ('__str__', 'modified_at')
+

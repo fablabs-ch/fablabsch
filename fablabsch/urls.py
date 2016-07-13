@@ -52,6 +52,8 @@ urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),
     #url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^pages/(?P<page_slug>.+)\.html$', views.pages),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^i18n/', include('django.conf.urls.i18n')),

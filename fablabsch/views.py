@@ -21,8 +21,9 @@ import re
 from datetime import datetime, date
 import xml.etree.ElementTree as ET
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
 import requests
 from rest_framework.pagination import LimitOffsetPagination
 
@@ -310,6 +311,14 @@ def ical_import(request):
             print(e)
 
     return HttpResponse()
+
+
+def pages(request, page_slug):
+    try:
+        page = Page.objects.get(slug=page_slug)
+        return HttpResponse(page.content)
+    except ObjectDoesNotExist:
+        return HttpResponseNotFound()
 
 
 #API

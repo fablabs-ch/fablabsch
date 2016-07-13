@@ -15,7 +15,7 @@
 
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
 from django.contrib.postgres.fields import JSONField
@@ -162,3 +162,14 @@ class Event(models.Model):
 
     def __str__(self):
         return u'%s %s %s' % (self.summary, self.startdate, self.enddate)
+
+
+class Page(models.Model):
+    slug = models.SlugField(verbose_name=_('slug'), blank=False, null=False, primary_key=True)
+    title = models.CharField(verbose_name=_('title'), max_length=255, blank=True, null=False)
+    content = RichTextUploadingField(verbose_name=_('content'))
+    modified_at = models.DateTimeField(verbose_name='modified at', auto_now=True)
+
+    def __str__(self):
+        return u'%s (%s.html)' % (self.title, self.slug)
+
