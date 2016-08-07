@@ -54,7 +54,7 @@ angular.module('frontendApp')
 
           });
           Object.keys(api.filterSpace).forEach(function(key){
-              if (existingSpaces.indexOf(key) <= 0) {
+              if (existingSpaces.indexOf(key) < 0) {
                   delete api.filterSpace[key];
                   api.saveFilter();
               }
