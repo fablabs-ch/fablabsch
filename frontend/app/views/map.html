@@ -1,7 +1,11 @@
-<ui-gmap-google-map center='map.map.center' zoom='map.map.zoom' options="map.map.options">
-        <ui-gmap-markers
+<ui-gmap-google-map center='map.map.center' zoom='map.map.zoom' options="map.map.options" events="map.map.events">
+        <ui-gmap-markers ng-if="map.markers"
             models="map.markers"
+            type="'spider'"
             coords="'coords'"
+            typeOptions="map.typeOptions"
+            typeEvents="map.typeEvents"
+            control="map.control"
             options="'options'">
         </ui-gmap-marker>
 </ui-gmap-google-map>

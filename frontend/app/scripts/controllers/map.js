@@ -25,8 +25,26 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MapCtrl', function ($http, $location, api) {
+  .controller('MapCtrl', function ($http, $location, $timeout, api) {
     var map = this;
+
+    map.acceptClicks = false;
+    function expand() {
+        $timeout(function(){
+            if(!map.control || !map.control.getManager) {
+                return;
+            }
+            map.acceptClicks = false;
+            var oms = map.control.getManager().markerSpiderfier;
+            oms.unspiderfy();
+            var markers = oms.markersNearAnyOtherMarker();
+            markers.forEach(function (marker) {
+                google.maps.event.trigger(marker, 'click');
+            });
+            map.acceptClicks = true;
+        }, 400);
+    }
+
     $http.get('styles/gmap.style.json').then(function(result){
         map.map = {
         center: {
@@ -36,9 +54,25 @@ angular.module('frontendApp')
         zoom: 9,
         options: {
             styles: result.data,
-            disableDefaultUI: true
-        } };
+            disableDefaultUI: true,
+        },
+        events: {
+            zoom_changed: expand,
+            tilesloaded: expand
+        }};
     });
+
+    map.typeOptions =  {
+        keepSpiderfied: true,
+        nearbyDistance: 40,
+        circleSpiralSwitchover: 0,
+        circleFootSeparation: 60,
+        spiralFootSeparation: 60,
+        spiralLengthFactor: 40,
+        legWeight: 1.5
+    };
+
+    map.control = {};
 
     api.ready.then(function(){
         map.spaces = api.spaces;
@@ -54,15 +88,20 @@ angular.module('frontendApp')
                         url: space.marker,
                         scaledSize : {width: 64, height: 64}
                     },
-                    title: space.name
-                },
-                events:{
-                    click: function(){
-                        $location.path('/space/' + space.slug);
-                    }
+                    title: space.name,
+                    slug: space.slug
                 }
             };
         });
+        expand();
     });
+
+    map.typeEvents = {
+        click: function(marker, type, obj){
+            if( map.acceptClicks === true) {
+                $location.path('/space/' + obj.options.slug);
+            }
+        }
+    };
 
   });

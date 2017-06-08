@@ -10,3 +10,7 @@ Run `grunt` for building and `grunt serve` for preview.
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+
+google maps tweaks
+commented angular-google-maps.js line 14994         //this['unspiderfy']();
