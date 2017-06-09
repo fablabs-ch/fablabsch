@@ -68,7 +68,7 @@ angular.module('frontendApp')
         circleSpiralSwitchover: 0,
         circleFootSeparation: 60,
         spiralFootSeparation: 60,
-        spiralLengthFactor: 40,
+        spiralLengthFactor: 50,
         legWeight: 1.5
     };
 
@@ -86,7 +86,8 @@ angular.module('frontendApp')
                 options: {
                     icon: {
                         url: space.marker,
-                        scaledSize : {width: 64, height: 64}
+                        scaledSize : {width: 64, height: 64},
+                        anchor: {x: 32, y: 32}
                     },
                     title: space.name,
                     slug: space.slug
