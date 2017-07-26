@@ -17,6 +17,6 @@ nginx:
   volumes_from:
      - web
   ports:
-    - "80:80"
+    - "8081:80"
   links:
     - web:web
