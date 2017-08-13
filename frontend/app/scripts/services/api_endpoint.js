@@ -25,4 +25,4 @@
  * Constant in the frontendApp.
  */
 angular.module('frontendApp')
-  .constant('API_ENDPOINT', 'https://fablabs.ch/');
+  .constant('API_ENDPOINT', 'https://fablab.ch/');
