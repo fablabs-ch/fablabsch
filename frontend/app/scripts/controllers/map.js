@@ -25,84 +25,52 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('MapCtrl', function ($http, $location, $timeout, api) {
+  .controller('MapCtrl', function ($scope, $location, api) {
     var map = this;
 
-    map.acceptClicks = false;
-    function expand() {
-        $timeout(function(){
-            if(!map.control || !map.control.getManager) {
-                return;
-            }
-            map.acceptClicks = false;
-            var oms = map.control.getManager().markerSpiderfier;
-            oms.unspiderfy();
-            var markers = oms.markersNearAnyOtherMarker();
-            markers.forEach(function (marker) {
-                google.maps.event.trigger(marker, 'click');
-            });
-            map.acceptClicks = true;
-        }, 400);
-    }
-
-    $http.get('styles/gmap.style.json').then(function(result){
-        map.map = {
+    // TODO: try to use https://github.com/jawj/OverlappingMarkerSpiderfier-Leaflet for nicer layout?
+    map.map = {
         center: {
-            latitude: 46.84257184670688,
-            longitude: 7.5476379394531445
+            lat: 46.94257184670688,
+            lng: 7.9578,
+            zoom: 9
         },
-        zoom: 9,
-        options: {
-            styles: result.data,
-            disableDefaultUI: true,
+        tiles: {
+            url: "https://tile.osm.ch/switzerland/{z}/{x}/{y}.png",
+            options: {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
         },
         events: {
-            zoom_changed: expand,
-            tilesloaded: expand
-        }};
-    });
-
-    map.typeOptions =  {
-        keepSpiderfied: true,
-        nearbyDistance: 40,
-        circleSpiralSwitchover: 0,
-        circleFootSeparation: 60,
-        spiralFootSeparation: 60,
-        spiralLengthFactor: 50,
-        legWeight: 1.5
+            map: {
+                enable: ['popupopen'],
+                logic: 'emit'
+            }
+        }
     };
-
-    map.control = {};
 
     api.ready.then(function(){
         map.spaces = api.spaces;
         map.markers = api.spaces.map(function(space){
             return {
                 id: space.id,
-                coords: {
-                    latitude: space.latitude,
-                    longitude: space.longitude
+                lat: space.latitude,
+                lng: space.longitude,
+                icon: {
+                    iconUrl: space.marker,
+                    iconSize: [64,64],
+                    iconAnchor: [32, 32]
                 },
-                options: {
-                    icon: {
-                        url: space.marker,
-                        scaledSize : {width: 64, height: 64},
-                        anchor: {x: 32, y: 32}
-                    },
-                    title: space.name,
-                    slug: space.slug
-                }
+                message: space.slug,
+
             };
         });
-        expand();
     });
 
-    map.typeEvents = {
-        click: function(marker, type, obj){
-            if( map.acceptClicks === true) {
-                $location.path('/space/' + obj.options.slug);
-            }
-        }
-    };
+    $scope.$on('leafletDirectiveMap.popupopen', function(event, payload){
+        //payload.leafletObject.closePopup();
+        $location.path('/space/' + payload.leafletEvent.popup.getContent());
+    });
 
   });

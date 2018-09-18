@@ -1,4 +1,4 @@
-<div class="space-background" style="background-image: url('{{space.background}}');">
+<div v-if="space.background" class="space-background" style="background-image: url('{{space.background}}');">
 <div class="space-background-fill" ng-hide="space.background"></div>
 <section class="space margin-bottom">
     <div id="logo" style="position:relative">
@@ -43,13 +43,8 @@
         <div flex-gt-sm="50">
             <p ng-bind-html="space.description|nl2br"></p>
             <h3>Adresse</h3>
-            <ui-gmap-google-map class="space-map" center='space.map.center' zoom='space.map.zoom' options="space.map.options">
-                <ui-gmap-marker
-                    coords="space.marker.coords"
-                    options="space.marker.options"
-                    idkey="space.marker.id">
-                </ui-gmap-marker>
-            </ui-gmap-google-map>
+            <leaflet ng-if="space.showMap" class="space-map" lf-center="space.map.center" tiles="space.map.tiles" markers="space.map.markers"></leaflet>
+
             <p><small>{{space.street}}<br/>
             {{space.zip}} {{space.city}}</small></p>
 

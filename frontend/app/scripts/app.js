@@ -36,9 +36,9 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngMaterial',
-    'uiGmapgoogle-maps',
     'wu.masonry',
-    'linkify'
+    'linkify',
+    'ui-leaflet'
   ])
   .config(function ($routeProvider, API_ENDPOINT, $sceDelegateProvider) {
     $sceDelegateProvider.resourceUrlWhitelist([
@@ -90,11 +90,6 @@ angular
       .otherwise({
         redirectTo: '/news'
       });
-  })
-  .config(function(uiGmapGoogleMapApiProvider) {
-    uiGmapGoogleMapApiProvider.configure({
-        //    key: 'your api key',
-    });
   })
   .config(function($mdThemingProvider) {
     $mdThemingProvider.definePalette('amazingPaletteName', {

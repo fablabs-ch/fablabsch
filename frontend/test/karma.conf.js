@@ -46,6 +46,8 @@ module.exports = function(config) {
       'bower_components/imagesloaded/imagesloaded.js',
       'bower_components/angular-masonry/angular-masonry.js',
       'bower_components/angular-linkify/angular-linkify.js',
+      'bower_components/leaflet/dist/leaflet-src.js',
+      'bower_components/ui-leaflet/dist/ui-leaflet.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

@@ -25,32 +25,39 @@
  * Controller of the frontendApp
  */
 angular.module('frontendApp')
-  .controller('SpaceCtrl', function (space) {
+  .controller('SpaceCtrl', function (space, $timeout) {
 
-     angular.extend(this, space);
+    angular.extend(this, space);
 
-     this.map = {
+    this.map = {
         center: {
-            latitude: space.latitude,
-            longitude: space.longitude
+            lat: space.latitude,
+            lng: space.longitude,
+            zoom: 9
         },
-        zoom: 9,
-        options: {
-            disableDefaultUI: true
-        } };
-
-     this.marker = {
-        id: space.id,
-        coords: {
-            latitude: space.latitude,
-            longitude: space.longitude
+        tiles: {
+            url: "https://tile.osm.ch/switzerland/{z}/{x}/{y}.png",
+            options: {
+                maxZoom: 18,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }
         },
-        options: {
-            icon: {
-                url: space.marker,
-                scaledSize : {width: 64, height: 64}
-            },
-            title: space.name
+        markers: {
+            "space": {
+                id: space.id,
+                lat: space.latitude,
+                lng: space.longitude,
+                icon: {
+                    iconUrl: space.marker,
+                    iconSize: [64,64],
+                    iconAnchor: [32, 32]
+                }
+            }
         }
     };
+    // fix marker bug if coming from map
+    var ctrl = this;
+    $timeout(function(){
+        ctrl.showMap = true;
+    }, 100)
   });
