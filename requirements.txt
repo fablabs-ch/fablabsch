@@ -17,4 +17,4 @@ icalendar==3.10
 django-ckeditor==5.0.3
 #dev
 django-debug-toolbar==1.4
-Werkzeug==0.11.10
+Werkzeug==0.15.3
