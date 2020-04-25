@@ -16,22 +16,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-"""fablabadmin URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.8/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Add an import:  from blog import urls as blog_urls
-    2. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
-"""
-from django.conf.urls import include, url
+from django.conf import settings
+from django.urls import include, path, re_path
 from django.contrib import admin
 from django.views.generic import TemplateView
 from rest_framework import routers
@@ -46,21 +32,25 @@ router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'spaces', views.SpaceViewSet)
 router.register(r'resources', views.ResourcesViewSet)
 router.register(r'posts', views.PostViewSet)
-router.register(r'events', views.EventViewSet, base_name='event')
+router.register(r'events', views.EventViewSet, basename='event')
 
 urlpatterns = [
-    url(r'^jet/', include('jet.urls', 'jet')),
-    #url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^pages/(?P<page_slug>.+)\.html$', views.pages),
-    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^api/', include(router.urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^i18n/', include('django.conf.urls.i18n')),
-    url(r'^cron/import', views.cron_import),
-    url(r'^cron/fablabsio', views.cron_fablabsio),
-    url(r'^cron/fablabis', views.cron_fablabis),
-    url(r'^cron/events', views.ical_import),
-    url(r'^import/facebook/(?P<facebook_id>.+)$', views.facebook_page_import),
+    path('jet/', include('jet.urls', 'jet')),
+    path('admin/', admin.site.urls),
+    re_path(r'^pages/(?P<page_slug>.+)\.html$', views.pages),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('api/', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('i18n/', include('django.conf.urls.i18n')),
+    path('cron/import', views.cron_import),
+    path('cron/fablabsio', views.cron_fablabsio),
+    path('cron/fablabis', views.cron_fablabis),
+    path('cron/events', views.ical_import),
+    re_path(r'^import/facebook/(?P<facebook_id>.+)$', views.facebook_page_import),
 
 ]
+if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls)),
+    ] + urlpatterns

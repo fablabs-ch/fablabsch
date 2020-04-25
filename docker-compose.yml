@@ -1,22 +1,39 @@
-db:
-  image: postgres:9.5
-  env_file: .env
-web:
-  build: .
-  env_file: .env
-  environment:
-    - PYTHONUNBUFFERED=1
-  command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; python manage.py runserver 0.0.0.0:8080; done"
-  working_dir: /app
-  volumes:
-    - .:/app
-  links:
-    - db
-nginx:
-  image: bfritscher/nginx-proxy-django
-  volumes_from:
-     - web
-  ports:
-    - "8081:80"
-  links:
-    - web:web
+version: '3'
+
+volumes:
+  postgres_data: {}
+
+services:
+  db:
+    image: postgres:11
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file: .env
+    restart: always
+  web:
+    build: .
+    env_file: .env
+    restart: always
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.scheme=https"
+      - "traefik.http.middlewares.https_redirect.redirectscheme.permanent=true"
+      - "traefik.http.services.fablab.loadbalancer.server.port=8000"
+      - "traefik.http.routers.fablab.rule=Host(`fablab.ch`) || Host(`www.fablab.ch`) || Host(`fablabs.ch`) || Host(`www.fablabs.ch`)"
+      - "traefik.http.routers.fablab.entrypoints=web"
+      - "traefik.http.routers.fablab.middlewares=https_redirect"
+      - "traefik.http.routers.fablab_secured.rule=Host(`fablab.ch`) || Host(`www.fablab.ch`) || Host(`fablabs.ch`) || Host(`www.fablabs.ch`)"
+      - "traefik.http.routers.fablab_secured.entrypoints=websecure"
+      - "traefik.http.middlewares.fablab-www-redirect.redirectregex.regex=^https://www.fablabs.ch/(.*)"
+      - "traefik.http.middlewares.fablab-www-redirect.redirectregex.replacement=https://fablabs.ch/$${1}"
+      - "traefik.http.routers.fablab_secured.middlewares=fablab-www-redirect"
+      - "traefik.http.routers.fablab_secured.tls=true"
+      - "traefik.http.routers.fablab_secured.tls.certresolver=myresolver"
+    #command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; python manage.py runserver 0.0.0.0:8000; done"
+    command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; /usr/local/bin/gunicorn fablabsch.wsgi --bind 0.0.0.0:8000 --chdir=/app; done"
+    #command: bash -c "/usr/local/bin/gunicorn fablabsch.wsgi --bind 0.0.0.0:8000 --chdir=/app"
+    volumes:
+      - .:/app
+    depends_on:
+      - db

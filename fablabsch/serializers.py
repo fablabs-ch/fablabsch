@@ -23,11 +23,13 @@ from .models import *
 class VendorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Vendor
+        fields = '__all__' 
 
 
 class ResourceDownSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resource
+        fields = '__all__'
     vendor = VendorSerializer()
 
 
@@ -40,24 +42,28 @@ class SpaceShortField(serializers.ModelSerializer):
 class SpaceResourceDownSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpaceResource
+        fields = '__all__'
     resource = ResourceDownSerializer()
 
 
 class SpaceResourceUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpaceResource
+        fields = '__all__'
     space = SpaceShortField(read_only=True)
 
 
 class SpaceResourceUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = SpaceResource
+        fields = '__all__'
     space = SpaceShortField(read_only=True)
 
 
 class ResourceUpSerializer(serializers.ModelSerializer):
     class Meta:
         model = Resource
+        fields = '__all__'
     vendor = VendorSerializer()
     spaces = SpaceResourceUpSerializer(many=True, read_only=True)
 
@@ -65,17 +71,20 @@ class ResourceUpSerializer(serializers.ModelSerializer):
 class SpaceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Space
+        fields = '__all__'
     resources = SpaceResourceDownSerializer(many=True, read_only=True)
 
 
 class PostImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostImage
+        fields = '__all__'
 
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
+        fields = '__all__'
     images = PostImageSerializer(many=True, read_only=True)
     space = SpaceShortField(read_only=True)
 
@@ -83,4 +92,5 @@ class PostSerializer(serializers.ModelSerializer):
 class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model = Event
+        fields = '__all__'
     space = SpaceShortField(read_only=True)
