@@ -64,7 +64,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.humanize',
-    'whitenoise.runserver_nostatic',
+    #'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
@@ -88,7 +88,7 @@ MIDDLEWARE = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    #'whitenoise.middleware.WhiteNoiseMiddleware',
     'reversion.middleware.RevisionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -180,8 +180,8 @@ MEDIA_ROOT = env('MEDIA_ROOT', default='')
 MEDIA_URL = env('MEDIA_URL', default='/media/')
 
 # Whitenoise
-WHITENOISE_INDEX_FILE = True
-WHITENOISE_ROOT = "/app/frontend/dist"
+# WHITENOISE_INDEX_FILE = True
+# WHITENOISE_ROOT = "/app/frontend/dist"
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
@@ -265,7 +265,7 @@ CKEDITOR_CONFIGS = {
 
 #
 def show_toolbar(request):
-    return True
+    return DEBUG
 
 DEBUG_TOOLBAR_CONFIG = {
     "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
