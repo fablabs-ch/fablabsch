@@ -3,6 +3,7 @@ psycopg2==2.9.1
 r-django-jet==2.0.9 # fork fix python2-3 issues
 google-api-python-client==2.29.0
 djangorestframework==3.12.4
+djangorestframework-yaml==2.0.0
 django-cors-middleware==1.5.0
 django-environ==0.8.1
 requests==2.26.0
@@ -16,7 +17,7 @@ Pillow==8.4.0
 icalendar==4.0.9
 django-ckeditor==6.1.0
 whitenoise==5.3.0
-gunicorn==20.1.0 
+gunicorn==20.1.0
 #dev
 django-debug-toolbar==3.2.2
 Werkzeug==2.0.2
