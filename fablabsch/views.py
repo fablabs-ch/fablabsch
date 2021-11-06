@@ -18,6 +18,19 @@
 
 import pprint
 import re
+from ruamel.yaml import YAML
+from ruamel.yaml.representer import RoundTripRepresenter
+
+def repr_str(dumper: RoundTripRepresenter, data: str):
+    if '\n' in data:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+
+yaml = YAML()
+yaml.representer.add_representer(str, repr_str)
+
+from pathlib import Path
+from PIL import Image
 from datetime import datetime, date
 import xml.etree.ElementTree as ET
 
@@ -320,6 +333,71 @@ def pages(request, page_slug):
     except ObjectDoesNotExist:
         return HttpResponseNotFound()
 
+def export_machines(request):
+    resources = Resource.objects.all()
+    for resource in resources:
+        r_data = {
+            'model': resource.model,
+            'vendor': resource.vendor.name
+        }
+        if resource.custom_data:
+            for key in resource.custom_data.keys():
+                r_data[key] = resource.custom_data[key]
+        folder = 'content/machines'
+        Path("%s/%s" % (folder, resource.type)).mkdir(parents=True, exist_ok=True)
+        streamFile = open("%s/%s/%s.yml" % (folder, resource.type, resource.model), 'w')
+        yaml.dump(r_data, streamFile)
+        if resource.picture:
+            image = Image.open(resource.picture.file)
+            image.save("%s/%s/%s.png" % (folder, resource.type, resource.model))
+    return HttpResponse("done")
+
+def export_spaces(request):
+    spaces = Space.objects.all()
+    for space in spaces:
+        s_data = {
+            'name': space.name,
+            'description': space.description,
+            'city': space.city,
+            'zip':  space.zip,
+            'street': space.street,
+            'country_code': space.country,
+            'state_code': space.state,
+            'latitude': space.latitude,
+            'longitude': space.longitude,
+            'founded': space.founded,
+            'email': space.email,
+            'website': space.website,
+            'facebook': space.facebook,
+            'twitter': space.twitter,
+            'language': space.language,
+            'events_ics': space.events_ics,
+            'last_confirmed': space.last_confirmed,
+            'machines': []
+        }
+        # add machines to space
+        for sr in space.resources.all():
+            data = sr.resource.model
+            if sr.custom_data:
+                data = {
+                    'ref': sr.resource.model,
+                }
+                for key in sr.custom_data.keys():
+                    data[key] = sr.custom_data[key]
+            s_data['machines'].append(data)
+
+
+        if space.custom_data:
+            for key in space.custom_data.keys():
+                s_data[key] = space.custom_data[key]
+        folder = 'content/spaces'
+        Path(folder).mkdir(parents=True, exist_ok=True)
+        streamFile = open("%s/%s.yml" % (folder, space.slug), 'w')
+        yaml.dump(s_data, streamFile)
+        if space.logo:
+            image = Image.open(space.logo.file)
+            image.save("%s/%s.png" % (folder, space.slug))
+    return HttpResponse("done")
 
 #API
 class SpaceViewSet(viewsets.ModelViewSet):

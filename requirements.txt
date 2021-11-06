@@ -4,6 +4,7 @@ r-django-jet==2.0.9 # fork fix python2-3 issues
 google-api-python-client==2.29.0
 djangorestframework==3.12.4
 djangorestframework-yaml==2.0.0
+ruamel.yaml==0.17.17
 django-cors-middleware==1.5.0
 django-environ==0.8.1
 requests==2.26.0
