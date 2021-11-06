@@ -100,6 +100,8 @@ class PostImageInline(admin.TabularInline):
 @admin.register(Post)
 class PostAdmin(CompareVersionAdmin):
     inlines = (PostImageInline,)
+    list_filter = ('space', 'source_type', 'type')
+    list_display = ('id', 'space', 'source_type', 'type')
 
 
 @admin.register(Event)
