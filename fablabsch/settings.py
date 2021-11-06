@@ -21,31 +21,33 @@ Django settings for fablabadmin project.
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from sentry_sdk.integrations.django import DjangoIntegration
+import sentry_sdk
+from django.utils.translation import gettext_lazy as _
 import os
 import environ
 
 
 env = environ.Env()
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-environ.Env.read_env(BASE_DIR + '/.env') # reading .env file
+environ.Env.read_env(BASE_DIR + '/.env')  # reading .env file
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY', default='_+rso1#3$0(@hlvg=%2j(_ly#y0a@qqi)2f(g91_4@rb3me+!#')
+SECRET_KEY = env(
+    'SECRET_KEY', default='_+rso1#3$0(@hlvg=%2j(_ly#y0a@qqi)2f(g91_4@rb3me+!#')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env('DEBUG', default=False)
 
-FACEBOOK_ACCESS_TOKEN = env('FACEBOOK_CLIENT_ID') + '|' + env('FACEBOOK_CLIENT_SECRET')
+FACEBOOK_ACCESS_TOKEN = env('FACEBOOK_CLIENT_ID') + \
+    '|' + env('FACEBOOK_CLIENT_SECRET')
 TWITTER_BEARER_TOKEN = env('TWITTER_BEARER_TOKEN')
 
 ALLOWED_HOSTS = ['*']
 
-
-
-from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
     ('fr', _('French')),
@@ -56,7 +58,7 @@ LANGUAGES = [
 
 INSTALLED_APPS = (
     'fablabsch',
-    #'jet.dashboard',
+    # 'jet.dashboard',
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -64,10 +66,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.humanize',
-    #'whitenoise.runserver_nostatic',
+    # 'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'corsheaders',
     'rest_framework',
+    'django_filters',
     'import_export',
     'debug_toolbar',
     'reversion',
@@ -86,9 +89,9 @@ MIDDLEWARE = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    #'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    #'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
     'reversion.middleware.RevisionMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
@@ -99,7 +102,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [],
-        #'APP_DIRS': True,
+        # 'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.contrib.auth.context_processors.auth',
@@ -112,17 +115,17 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'loaders': [
-                #('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                #]),
+                # ('django.template.loaders.cached.Loader', [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                # ]),
             ]
         },
     },
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend', # default
+    'django.contrib.auth.backends.ModelBackend',  # default
 )
 
 ANONYMOUS_USER_ID = -1
@@ -142,7 +145,8 @@ DATABASES['default']['ATOMIC_REQUESTS'] = True
 
 # EMAIL CONFIGURATION
 # ------------------------------------------------------------------------------
-EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND', default='django.core.mail.backends.smtp.EmailBackend')
+EMAIL_BACKEND = env('DJANGO_EMAIL_BACKEND',
+                    default='django.core.mail.backends.smtp.EmailBackend')
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
     EMAIL_FILE_PATH = '/app/tmp/app-messages'
@@ -154,7 +158,7 @@ else:
     EMAIL_USE_TLS = env('EMAIL_USE_TLS')
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-DEFAULT_FROM_EMAIL=env('DJANGO_EMAIL_BACKEND', default='webmaster@localhost')
+DEFAULT_FROM_EMAIL = env('DJANGO_EMAIL_BACKEND', default='webmaster@localhost')
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
@@ -200,12 +204,13 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
         'rest_framework.parsers.MultiPartParser'
     ],
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }
 
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:9000',
+    'localhost:8081',
 )
 #CORS_URLS_REGEX = r'^/api/.*$'
 
@@ -239,18 +244,20 @@ CKEDITOR_CONFIGS = {
             ['Source', '-', 'Bold', 'Italic']
         ],
         'toolbar_YourCustomToolbarConfig': [
-            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
-            {'name': 'clipboard', 'items': ['Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
+            {'name': 'basicstyles', 'items': [
+                'Bold', 'Italic', 'Subscript', 'Superscript', '-', 'RemoveFormat']},
+            {'name': 'clipboard', 'items': [
+                'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo']},
             {'name': 'paragraph',
              'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft',
-                     'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+                       'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
             '/',
             {'name': 'styles', 'items': ['Format']},
             {'name': 'colors', 'items': ['TextColor', 'BGColor']},
             {'name': 'tools', 'items': ['Maximize', 'ShowBlocks']},
             {'name': 'insert', 'items': ['Image', 'Table']},
-            {'name': 'document', 'items': ['Source',]},
+            {'name': 'document', 'items': ['Source', ]},
             {'name': 'yourcustomtools', 'items': [
                 # put the name of your editor.ui.addButton here
 
@@ -275,15 +282,16 @@ CKEDITOR_CONFIGS = {
 }
 
 #
+
+
 def show_toolbar(request):
     return DEBUG
 
+
 DEBUG_TOOLBAR_CONFIG = {
-    "SHOW_TOOLBAR_CALLBACK" : show_toolbar,
+    "SHOW_TOOLBAR_CALLBACK": show_toolbar,
 }
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
 
 sentry_sdk.init(
     dsn=env('SENTRY_DSN'),
