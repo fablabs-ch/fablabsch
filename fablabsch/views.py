@@ -348,8 +348,7 @@ def export_machines(request):
     resources = Resource.objects.all()
     for resource in resources:
         r_data = {
-            'model': resource.model,
-            'vendor': resource.vendor.name
+            'name': resource.model,
         }
         if resource.custom_data:
             for key in resource.custom_data.keys():
@@ -359,19 +358,19 @@ def export_machines(request):
              ).mkdir(parents=True, exist_ok=True)
         filename = resource.model
         try:
-            streamFile = open("%s/%s/%s.yml" %
-                            (folder, resource.type, filename), 'w')
+            streamFile = open("%s/%s/%s/%s.yml" %
+                            (folder, resource.type, resource.vendor.name, filename), 'w')
         except:
             filename = slugify(resource.model)
-            streamFile = open("%s/%s/%s.yml" %
-                            (folder, resource.type, filename), 'w')
+            streamFile = open("%s/%s/%s/%s.yml" %
+                            (folder, resource.type, resource.vendor.name, filename), 'w')
         yaml.dump(r_data, streamFile)
         if resource.picture:
             image = Image.open(resource.picture.file)
             if image.mode not in ["1", "L", "P", "RGB", "RGBA"]:
                 image = image.convert("RGB")
-            image.save("%s/%s/%s.png" %
-                       (folder, resource.type, filename))
+            image.save("%s/%s/%s/%s.png" %
+                       (folder, resource.type, resource.vendor.name, filename))
     return HttpResponse("done")
 
 
