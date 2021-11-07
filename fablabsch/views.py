@@ -363,6 +363,8 @@ def export_machines(request):
         yaml.dump(r_data, streamFile)
         if resource.picture:
             image = Image.open(resource.picture.file)
+            if image.mode not in ["1", "L", "P", "RGB", "RGBA"]:
+                image = image.convert("RGB")
             image.save("%s/%s/%s.png" %
                        (folder, resource.type, filename))
     return HttpResponse("done")
@@ -411,6 +413,8 @@ def export_spaces(request):
         yaml.dump(s_data, streamFile)
         if space.logo:
             image = Image.open(space.logo.file)
+            if image.mode not in ["1", "L", "P", "RGB", "RGBA"]:
+               image = image.convert("RGB")
             image.save("%s/%s.png" % (folder, space.slug))
     return HttpResponse("done")
 
