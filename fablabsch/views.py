@@ -354,7 +354,7 @@ def export_machines(request):
             for key in resource.custom_data.keys():
                 r_data[key] = resource.custom_data[key]
         folder = 'content/machines'
-        Path("%s/%s" % (folder, resource.type)
+        Path("%s/%s/%s" % (folder, resource.type, resource.vendor.name)
              ).mkdir(parents=True, exist_ok=True)
         filename = resource.model
         try:
