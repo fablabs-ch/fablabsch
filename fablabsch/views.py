@@ -37,7 +37,7 @@ import re
 from ruamel.yaml import YAML
 from ruamel.yaml.representer import RoundTripRepresenter
 from django_filters import rest_framework as filters
-
+from django.utils.text import slugify
 
 def repr_str(dumper: RoundTripRepresenter, data: str):
     if '\n' in data:
@@ -357,13 +357,14 @@ def export_machines(request):
         folder = 'content/machines'
         Path("%s/%s" % (folder, resource.type)
              ).mkdir(parents=True, exist_ok=True)
+        filename = slugify(resource.model)
         streamFile = open("%s/%s/%s.yml" %
-                          (folder, resource.type, resource.model), 'w')
+                          (folder, resource.type, filename), 'w')
         yaml.dump(r_data, streamFile)
         if resource.picture:
             image = Image.open(resource.picture.file)
             image.save("%s/%s/%s.png" %
-                       (folder, resource.type, resource.model))
+                       (folder, resource.type, filename))
     return HttpResponse("done")
 
 
