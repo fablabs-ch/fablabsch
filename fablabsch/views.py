@@ -357,9 +357,14 @@ def export_machines(request):
         folder = 'content/machines'
         Path("%s/%s" % (folder, resource.type)
              ).mkdir(parents=True, exist_ok=True)
-        filename = slugify(resource.model)
-        streamFile = open("%s/%s/%s.yml" %
-                          (folder, resource.type, filename), 'w')
+        filename = resource.model
+        try:
+            streamFile = open("%s/%s/%s.yml" %
+                            (folder, resource.type, filename), 'w')
+        except:
+            filename = slugify(resource.model)
+            streamFile = open("%s/%s/%s.yml" %
+                            (folder, resource.type, filename), 'w')
         yaml.dump(r_data, streamFile)
         if resource.picture:
             image = Image.open(resource.picture.file)
