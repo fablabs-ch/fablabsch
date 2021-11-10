@@ -210,7 +210,7 @@ REST_FRAMEWORK = {
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-    'localhost:8081',
+    'localhost:8080','localhost:8081',
 )
 #CORS_URLS_REGEX = r'^/api/.*$'
 

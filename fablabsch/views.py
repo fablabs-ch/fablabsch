@@ -16,7 +16,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from rest_framework import filters
 from icalendar import Calendar
 from django.db import transaction
 from rest_framework import permissions
@@ -38,6 +37,7 @@ from ruamel.yaml import YAML
 from ruamel.yaml.representer import RoundTripRepresenter
 from django_filters import rest_framework as filters
 from django.utils.text import slugify
+
 
 def repr_str(dumper: RoundTripRepresenter, data: str):
     if '\n' in data:
@@ -359,11 +359,11 @@ def export_machines(request):
         filename = resource.model
         try:
             streamFile = open("%s/%s/%s/%s.yml" %
-                            (folder, resource.type, resource.vendor.name, filename), 'w')
+                              (folder, resource.type, resource.vendor.name, filename), 'w')
         except:
             filename = slugify(resource.model)
             streamFile = open("%s/%s/%s/%s.yml" %
-                            (folder, resource.type, resource.vendor.name, filename), 'w')
+                              (folder, resource.type, resource.vendor.name, filename), 'w')
         yaml.dump(r_data, streamFile)
         if resource.picture:
             image = Image.open(resource.picture.file)
@@ -418,7 +418,7 @@ def export_spaces(request):
         if space.logo:
             image = Image.open(space.logo.file)
             if image.mode not in ["1", "L", "P", "RGB", "RGBA"]:
-               image = image.convert("RGB")
+                image = image.convert("RGB")
             image.save("%s/%s.png" % (folder, space.slug))
     return HttpResponse("done")
 
@@ -441,11 +441,13 @@ class ResourcesViewSet(viewsets.ModelViewSet):
 
 
 class PostFilter(filters.FilterSet):
-    space = filters.ModelMultipleChoiceFilter(queryset=Space.objects.all())
+    space = filters.ModelMultipleChoiceFilter(
+        queryset=Space.objects.all(), to_field_name="slug")
 
     class Meta:
         model = Post
         fields = ('type', 'space', 'source_type', 'show', 'created_at')
+
 
 class PostViewSet(viewsets.ModelViewSet):
     # TODO object based permissions
@@ -457,7 +459,8 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class EventFilter(filters.FilterSet):
-    space = filters.ModelMultipleChoiceFilter(queryset=Space.objects.all())
+    space = filters.ModelMultipleChoiceFilter(
+        queryset=Space.objects.all(), to_field_name="slug")
 
     class Meta:
         model = Event
