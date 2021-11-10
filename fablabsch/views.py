@@ -464,7 +464,11 @@ class EventFilter(filters.FilterSet):
 
     class Meta:
         model = Event
-        fields = ('space__slug', 'startdate', 'location')
+        fields = {
+            'startdate': ('lte', 'gte', 'gt', 'lt'),
+            'enddate': ('lte', 'gte', 'gt', 'lt'),
+            'location': ('exact', 'in', 'startswith')
+        }
 
 
 class EventViewSet(viewsets.ModelViewSet):
