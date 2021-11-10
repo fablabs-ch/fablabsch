@@ -441,12 +441,12 @@ class ResourcesViewSet(viewsets.ModelViewSet):
 
 
 class PostFilter(filters.FilterSet):
-    space = filters.ModelMultipleChoiceFilter(
+    space__slug = filters.ModelMultipleChoiceFilter(
         queryset=Space.objects.all(), to_field_name="slug")
 
     class Meta:
         model = Post
-        fields = ('type', 'space', 'source_type', 'show', 'created_at')
+        fields = ('type', 'space__slug', 'source_type', 'show', 'created_at')
 
 
 class PostViewSet(viewsets.ModelViewSet):
@@ -459,12 +459,12 @@ class PostViewSet(viewsets.ModelViewSet):
 
 
 class EventFilter(filters.FilterSet):
-    space = filters.ModelMultipleChoiceFilter(
+    space__slug = filters.ModelMultipleChoiceFilter(
         queryset=Space.objects.all(), to_field_name="slug")
 
     class Meta:
         model = Event
-        fields = ('space', 'startdate', 'location')
+        fields = ('space__slug', 'startdate', 'location')
 
 
 class EventViewSet(viewsets.ModelViewSet):
