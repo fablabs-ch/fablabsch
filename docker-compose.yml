@@ -11,7 +11,7 @@ services:
     env_file: .env
     restart: always
   backend:
-    build: ./backend/
+    build: ./backend
     env_file: .env
     restart: always
     #command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; python manage.py runserver 0.0.0.0:8000; done"
@@ -23,7 +23,9 @@ services:
     depends_on:
       - db
   frontend:
-    build: ./frontend
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
     restart: always
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
