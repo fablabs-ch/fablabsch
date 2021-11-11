@@ -1,0 +1,29 @@
+name: FabLab Riviera
+description: |-
+  Rejoingez-nous pour monter le Fablab-Riviera
+
+
+city: Vevey
+zip: 1800
+street: Avenue de la Prairie 24
+country_code: CH
+state_code: VD
+latitude: 46.461281
+longitude: 6.858913
+founded: 2021-11-01
+email: fablab.riviera.project@gmail.com
+website: https://fablab-riviera.ch/
+# facebook: username
+# facebook_filter: '#FablabBB' #optional hashtag which needs to be in content to consider post
+# twitter: username
+# twitter_filter: ' #FablabBB' #optional hashtag which needs to be in content to consider post
+lang: FR
+members:
+fablabsio:
+#events_ics: #url to a ics (google calendar for example)
+#events_ics_filter: '#\w*' # optional regex to filter posts
+machines:
+#- Machine Name #must be a name of a yml file which exist in machines subfolder
+#- ref: Machine Name # ref version to add attribute for this specific machine and this lab
+#  power: 100W
+#  qty: 2
