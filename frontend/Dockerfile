@@ -1,7 +1,7 @@
 FROM node:16 AS builder
 WORKDIR /usr/src/app
-COPY ./content /usr/src/content
 COPY ./frontend /usr/src/app
+COPY ./content /usr/src/app/content
 RUN yarn
 RUN npm run build
 

@@ -137,7 +137,7 @@ module.exports = function(api) {
     spaceMachines.addReference("ref", "Machine");
     machines.addReference("vendor", "Vendor");
 
-    let files = await glob("../content/machines/**/*.yml");
+    let files = await glob("./content/machines/**/*.yml");
     files = files.filter(
       (file) =>
         !file
@@ -158,7 +158,7 @@ module.exports = function(api) {
 
     const spaceMachinesData = [];
 
-    files = await glob("../content/spaces/*.yml");
+    files = await glob("./content/spaces/*.yml");
     files = files.filter(
       (file) =>
         !file
