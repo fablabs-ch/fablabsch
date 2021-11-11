@@ -1,0 +1,20 @@
+name: Y-FabLab
+description: |-
+  Y-FabLab est une association à but non lucratif dont la mission consiste à mettre à disposition de la population nord-vaudoise un lieu de créativité et de fabrication numérique ouvert à toutes et à tous.
+  categories
+city: Yverdon-les-Bains
+zip: '1400'
+street: Avenue de Grandson 48
+country_code: CH
+state_code: ''
+latitude: 46.7880936
+longitude: 6.6287796
+founded: 2017-05-01
+email: info@y-fablab.ch
+website: https://www.y-fablab.ch
+facebook: yfablab
+twitter: ''
+language: FR
+events_ics: https://calendar.google.com/calendar/ical/6sp8qpmmr83g46oshrclekdl9o%40group.calendar.google.com/public/basic.ics
+machines:
+- Cameo

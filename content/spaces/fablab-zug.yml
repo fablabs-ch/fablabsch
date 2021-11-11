@@ -1,0 +1,20 @@
+name: FabLab Zug
+description: ''
+city: Zug
+zip: '6300'
+street: Oberallmendstrasse 18
+country_code: CH
+state_code: ZG
+latitude: 47.1814157
+longitude: 8.5216881
+founded: 2019-03-01
+email: info@fablab-zug.ch
+website: https://fablab-zug.ch/
+facebook: FabLab-ZUG-2181693758740727
+twitter:
+language: DE
+events_ics: ''
+fablabsio: fablabzug
+machines:
+- Ultimaker 2+
+

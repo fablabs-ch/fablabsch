@@ -1,0 +1,38 @@
+name: FabLab Fribourg - Freiburg
+description: |-
+  Les FabLabs sont des espaces ouverts au public, équipés et animés pour permettre à tout un chacun de fabriquer des objets de tous genres.
+
+  Entre imprimantes 3D et systèmes électroniques de prise en main de plus en plus facile, l'avenir appartient aux FabLabs, aux échanges et à l'entraide.
+
+  Début juin 2013 à Fribourg, un groupe s'est constitué spontanément afin de réaliser ce projet.
+
+  Si vous êtes intéressé, pour être un des fondateurs, animateurs ou utilisateurs vous pouvez nous contacter :
+  info@fablab-fribourg.ch
+city: Fribourg
+zip: '1700'
+street: Passage du Cardinal 1
+country_code: CH
+state_code: FR
+latitude: 46.7985001
+longitude: 7.1484299
+founded: 2013-01-01
+email: info@fablab-fribourg.ch
+website: https://fribourg.fablab.ch/
+facebook: FabLabFribourg
+twitter: FablabFR
+language: FR/DE
+events_ics: https://calendar.google.com/calendar/ical/nulu08ntleed9c5peukoeaifl8%40group.calendar.google.com/public/basic.ics
+events_ics_filter: '#\w*'
+fablabsio: fablabfribourg
+machines:
+- PCUT CT
+- ref: Speedy 300
+  power: 60W
+- ref: Replicator 5th Generation
+  nozzle_size: 0.4mm
+- CNC 3040
+- Replicator v.2
+- Ultimaker Original
+- PCUT PC-43
+- Press T-Shirt
+

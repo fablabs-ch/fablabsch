@@ -1,0 +1,29 @@
+name: Onl'fait
+description: |-
+  En octobre 2017, l’association Onl’fait a ouvert à Genève le premier Fab Lab genevois à vocation pédagogique, un espace ouvert à toutes et tous autour de l'artisanat numérique. Onl’fait met à la disposition de sa communauté les ressources techniques, technologiques et humaines pour construire, réparer, partager, essayer, se planter, recommencer, développer, reconstruire, révolutionner un concept, un prototype, un produit au sein d’une communauté éclectique de passionné/e/s.
+  Le Fab Lab Onl’fait est aussi un lieu de rencontres intergénérationnelles et multi-culturelles pour réfléchir à une approche écologique, citoyenne et durable de la science, de la technologie et de la consommation.
+city: Genève
+zip: '1203'
+street: Chemin des Sports 87
+country_code: CH
+state_code: GE
+latitude: 46.210581
+longitude: 6.141253
+founded: 2017-10-12
+email: contact@onlfait.ch
+website: https://www.onlfait.ch
+facebook: onlfait
+twitter:
+language: FR, EN, IT
+events_ics: ''
+fablabsio: onlfait
+machines:
+- Cameo
+- Itopie
+- OpenBuilds-OX
+- ref: 1060SP
+  power: 90W
+- ShopBot Buddy 48''
+- CR-20
+- Photon
+- LGK-100IGBT

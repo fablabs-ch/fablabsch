@@ -1,0 +1,29 @@
+name: FabLab Winti
+description: |-
+  Das FabLab Winti bietet seit 14. Dez. 2014 Jedermann-/Frau einen Ort an, wo man “Do It Yourself” mit den modernsten Technologien ausleben kann. Einen Ort, wo Du neue Fertigungstechnologien lernen und Deine Ideen umsetzen kannst.
+
+  Neben Maschinen (3D-Drucker, Lasercutter, CNC-Fräse, uvm.) und Werkzeugen zur digitalen Produktion, bietet das FabLab allen Interessierten Grund- und weiterführende Kurse an, um die Realisierung ihrer Ideen zu erleichtern, z.B. 3D-Design, 3D-Druck oder Programmierung von Mikroprozessoren.
+city: Winterthur
+zip: '8406'
+street: Technoparkstrasse 2
+country_code: CH
+state_code: ''
+latitude: 47.494276
+longitude: 8.716498
+founded: 2014-03-14
+email: info@fablabwinti.ch
+website: https://www.fablabwinti.ch/
+facebook: FabLab.winti
+twitter: FabLabWinti
+language: DE
+events_ics: ''
+members: 180
+fablabsio: fablabwinti
+machines:
+- Ultimaker Original
+- ref: Lasersaur
+  power: 100W
+- Lathe
+- Curio
+- OPTImill BF 20LVario
+

@@ -1,0 +1,30 @@
+name: FabLab Bern
+description: |-
+  Wer Zugang braucht zu 3D Druckern, Lasercutter, Drehbank, Bohrmaschine und anderen Werkzeugen, die nicht gerade in jedem Haushalt stehen, ist bei uns richtig.
+  Das FabLab steht Einzelpersonen, Gruppen und Firmen zur Verfügung und kann während unseren Öffnungszeiten gemäss den Nutzungsgebühren benutzt werden.
+  Voraussetzung ist das erfolgreiche Bestehen des Einführungskurses.
+  Wir bieten attraktive Gebühren auf Stunden- oder Halbtagesbasis. Besitzer der Jahreskarte erhalten einen Rabatt auf die Nutzungsgebühren.
+city: Bern
+zip: '3007'
+street: Eigerstrasse 12
+country_code: CH
+state_code: BE
+latitude: 46.9403801
+longitude: 7.4328098
+founded:
+email: ''
+website: https://fablab-bern.ch
+facebook: fablab.bern
+twitter: FabLab_Bern
+language: DE
+events_ics: ''
+fablabsio: fablabbern
+machines:
+- ref: Mars 90 PLUS
+  power: 90W
+- Ultimaker 2
+- Ultimaker Original+
+- Ultimaker Original
+- Printrbot Play
+- Cameo
+

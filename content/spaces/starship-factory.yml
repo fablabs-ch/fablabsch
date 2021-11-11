@@ -1,0 +1,34 @@
+name: Starship Factory
+description: |-
+  Was wir in der Starship Factory haben ist u.a.
+
+  * Diverse 3D-Drucker für kleine Plastikteile (für Vorlagen siehe z.B. thingiverse.com)
+  * eine CNC-Maschine (z.B. für Bühnenbuchstaben aus Holzplatten, siehe auch thingiverse)
+  * Laser zum Gravieren und dünnere Materialien schneiden (z.B. für Wasserzeichen auf deinem Material)
+  * Nähmaschinen (z.B. für Cosplay-Verkleidungen)
+  * Transferdruck und einfarbiger Siebdruck (z.B. für kleine Auflagen von Vereinspullis)
+  * sehr viel Sachen für Elektronik (diverse Lötstationen, Osziloskope, EL-Draht für leuchtende Verkleidugen, Rapsberry-Pis, etc.)
+  * bald: eine automatische Strickmaschine (z.B. für eigene Topflappen)
+
+  Einen ersten Eindruck bekommst Du auch von unseren Fotogalerien auf
+  <a href="https://www.instagram.com/starship_factory/">Insta</a>.
+
+  Wir sind im WerkKlybeck.ch , das uns einen grossen Forumsraum bietet, sowie den Austausch mit einer Werkstatt und einem Atelierkollektiv von Medien-Künstler*innen.
+city: Basel
+zip: '4057'
+street: Klybeckstrasse 141, WERK Raumkollektiv / Gebäude K-102
+country_code: CH
+state_code: BS
+latitude: 47.5749222
+longitude: 7.5872848
+founded: 2013-08-25
+email: pr@lists.starship-factory.ch
+website: https://starship-factory.ch/
+facebook: StarshipFactory
+twitter: StarshipFactory
+language: de
+events_ics: https://calendar.google.com/calendar/ical/1lt0poash68dlli86ertv1kbcg%40group.calendar.google.com/public/basic.ics
+members: 30
+fablabsio: starshipfactory
+machines: []
+

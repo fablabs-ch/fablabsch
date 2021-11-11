@@ -1,0 +1,44 @@
+name: FABLAB Biel/Bienne
+description: |-
+  WILLKOMMEN IM FABLAB BIEL/BIENNE
+
+  Das FABLAB (fabrication laboratory) von Switzerland Innovation Park Biel/Bienne (SIPBB) bietet dir einen Ort, wo du deine Ideen und Innovationen in Form von Prototypen und Kleinserien realisieren kannst. Unterschiedliche Werkbereiche wie Makerwerkstatt, Digitalisierung und Elektroniklabor stehen dir zur Verfügung. Mit 3D-Drucker und Laserschneider kannst du neue Formen herstellen und sämtliche Materialien bearbeiten. Zur Unterstützung und Vernetzung bieten wir im FABLAB Trainings- und Beratungsdienstleistungen sowie Veranstaltungen für Interessierte jedes Wissensstandes an.
+city: Nidau-Biel
+zip: '2560'
+street: Aarbergstrasse 1b
+country_code: CH
+state_code: ''
+latitude: 47.1284
+longitude: 7.2408
+founded: 2016-06-02
+email: info@fablab-biel-bienne.ch
+website: https://fablab-biel-bienne.ch/
+facebook: SIPBielBienne
+facebook_filter: '#FablabBB'
+twitter: sip_bielbienne
+twitter_filter: '#FablabBB'
+language: German and English
+events_ics: ''
+machines:
+- ref: Speedy 300
+  power: 60W
+- Zortrax M300plus
+- Zortrax M200
+- Ultimaker 3 extended
+- Ultimaker 2+ extended
+- ref: Speedmarker 700
+  power: Galvo 20W fiber
+- ref: Speedy 360flexx
+  power: 100W CO2 + 30W fiber
+- MillStep PA1070V3
+- Form2
+- Press T-Shirt
+- PCUT CT
+- Jet Fusion 540
+- J750
+- Fortus 360mc
+- Objet Eden 260V
+- Eva
+- David SLS-2
+- Structure Sensor Ipad
+

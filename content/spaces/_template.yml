@@ -1,0 +1,29 @@
+name: Lab Name
+description: |-
+  Some description
+
+
+city:
+zip: 'xxyz'
+street:
+country_code: CH
+state_code: VD
+latitude: 46.38353
+longitude: 6.21673
+founded: 2021-11-01
+email: info@
+website: https://...
+facebook: FabLabLaCote
+# facebook_filter: '#FablabBB' #optional hashtag which needs to be in content to consider post
+twitter: FabLabLaCote
+# twitter_filter: ' #FablabBB' #optional hashtag which needs to be in content to consider post
+lang: FR
+members: '10'
+fablabsio:
+#events_ics: #url to a ics (google calendar for example)
+#events_ics_filter: '#\w*' # optional regex to filter posts
+machines:
+- Machine Name #must be a name of a yml file which exist in machines subfolder
+- ref: Machine Name # ref version to add attribute for this specific machine and this lab
+  power: 100W
+  qty: 2

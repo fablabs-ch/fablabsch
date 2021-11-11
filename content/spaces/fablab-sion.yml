@@ -1,0 +1,24 @@
+name: FabLab Sion
+description: ''
+city: Sion
+zip: '1950'
+street: Espace Création, Rte de la Dixence 10
+country_code: CH
+state_code: VS
+latitude: 46.23059
+longitude: 7.3631
+founded: 2015-01-01
+email: info@fablabsion.ch
+website: https://fablabsion.ch
+facebook: '892676994135360'
+twitter: FabLab_Sion
+language: FR
+events_ics: ''
+fablabsio: fablabsion
+machines:
+- Cameo
+- ref: Zortrax M200
+  qty: 2
+- ref: BCL-0605MU
+  power: 90W,150W
+- Zortrax M300plus

@@ -1,0 +1,29 @@
+name: At3flo
+description: |-
+  At3flo est un tiers-lieu, alliant prototypage rapide, échange de temps, partage de savoirs et surtout plaisir. En d'autres termes, mixer la fabrication numérique et la ludification.
+
+  Pour une présentation plus interactive rendez-vous ici : <a href="https://at3flo.ch/presentation">lien de présentation</a>
+city: Ins
+zip: '3232'
+street: Moosgasse 12
+country_code: CH
+state_code: BE
+latitude: 47.0042997
+longitude: 7.1043073
+founded: 2015-12-30
+email: info@at3flo.ch
+website: https://www.at3flo.ch
+facebook: at3flo
+twitter: at3flo
+language: FR, DE, EN, LSF-CH
+events_ics: https://calendar.google.com/calendar/ical/at3flo.ch_meqjpg0ogk7k6ugbb18rc1smp4%40group.calendar.google.com/public/basic.ics
+members: 10
+fablabsio: at3flo
+events_ics_filter: '#w\w*'
+machines:
+- Cameo
+- Robox
+- Pocket NC 5 Axis Desktop
+- ref: GV1390
+  power: 100W
+- Crawlbot

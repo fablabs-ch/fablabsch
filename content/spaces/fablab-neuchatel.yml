@@ -1,0 +1,26 @@
+name: FabLab Neuchâtel
+description: 'FabLab: Laboratoire de fabrication ouvert à toutes et tous! Initiative
+  de la Haute École Arc (www.he-arc.ch).'
+city: Neuchâtel
+zip: '2002'
+street: Espace de l'Europe 7
+country_code: CH
+state_code: NE
+latitude: 46.9969294
+longitude: 6.93771430000004
+founded: 2012-03-01
+email: ''
+website: https://www.fablab-neuch.ch
+facebook: fablabneuchatel
+twitter: fablabneuch
+language: FR
+events_ics: https://calendar.google.com/calendar/ical/jcfvlfcrahuc8056n3a24i5m0o%40group.calendar.google.com/public/basic.ics
+machines:
+- Ultimaker Original
+- ref: Speedy 400
+  power: 80W
+- ref: Speedy 300
+  power: 80W
+- M850-KU
+- Sylverbullet 24
+fablabsio: fablabneuch

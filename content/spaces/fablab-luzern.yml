@@ -1,0 +1,24 @@
+name: FabLab Luzern
+description: ''
+city: Lucerne
+zip: '6048'
+street: Technikumstrasse 21, Trakt I, Horw
+country_code: CH
+state_code: ''
+latitude: 47.0144456547552
+longitude: 8.30506351957399
+founded: 2010-01-01
+email: labmanager@fablab-luzern.ch
+website: https://fablab-luzern.ch/
+facebook: fablab.luzern
+twitter: fablabluzern
+language: DE
+events_ics: ''
+machines:
+- PA8050
+- ref: AKJ9060
+  power: 100W
+- Ultimaker 2+
+- Ultimaker Original+
+members: 600 (100 aktiv)
+fablabsio: fablabluzern

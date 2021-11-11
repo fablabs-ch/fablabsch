@@ -1,0 +1,24 @@
+name: ceff-LAB Moutier
+description: ''
+city: Moutier
+zip: '2740'
+street: Rue Pré Jean-Meunier 1
+country_code: CH
+state_code: ''
+latitude: 47.2766062
+longitude: 7.3796285
+founded: 2019-11-01
+email: ''
+website: https://ceff-lab.ch/
+facebook:
+twitter:
+language: fr
+events_ics: ''
+machines:
+- CAMM-1 GS-24
+- ref: Speedy 360
+  power: 60W
+- ref: Mini Mill
+  power: 5,6kW
+- CR-10S pro
+- Ender-3 Pro

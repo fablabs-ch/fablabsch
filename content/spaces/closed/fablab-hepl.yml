@@ -1,0 +1,32 @@
+name: FabLab HEP Vaud
+description: |-
+  Espace d’auto-apprentissage, de mutualisation des connaissances, de co-enseignement et d’experimentations pédagogiques, le Fablab HEP Vaud est plus qu’un laboratoire de fabrication d’objets assistée par des machines.
+  Il est aussi le vecteur d’une philosophie qui replace la débrouillardise, la créativité et surtout le partage, au centre des relations humaines.
+
+  Des machines sont en place, le Fablab HEP Vaud est ouvert à tous les curieux, bricoleurs, hackers, inventeurs, makers, geeks, artistes, étudiants, enfants et adultes.
+  En bref, à tous ceux qui ont envie de concevoir et de fabriquer quelque chose par eux-mêmes et avec l‘aide des autres.
+
+  Repenser notre rapport aux autres, aux objets, à l’environnement, le design participatif est une des nouvelles démarches d’éducation en vue d’un développement durable à l’école.
+city: Lausanne
+zip: '1007'
+street: 1014, Avenue de Cour 33
+country_code: CH
+state_code: Vaud
+latitude: 46.5129986
+longitude: 6.6184954
+founded: 2016-12-01
+email: info@fablab-hepl.ch
+website: http://www.fablab-hepl.ch
+facebook: fablabhepvaud
+twitter: fablabhepvd
+language: fr
+events_ics: ''
+machines:
+- Cameo
+- Zortrax M200
+- ref: BCL-1006XU
+  power: 150W
+- ref: '6090'
+  power: 150W
+members: 30
+fablabsio: fablabhepvaud

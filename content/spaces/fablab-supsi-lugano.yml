@@ -1,0 +1,24 @@
+name: FabLab SUPSI Lugano
+description: ''
+city: Canobbio
+zip: '6952'
+street: Campus Trevano Canobbio, Laboratory of visual culture
+country_code: CH
+state_code: Tessin
+latitude: 46.0357017
+longitude: 8.96615499999996
+founded: 2012-01-01
+email: fablab@supsi.ch
+website: http://fablab.supsi.ch/
+facebook: fablabsupsi
+twitter: FabLabLugano
+language: IT
+events_ics: ''
+fablabsio: fablabsupsilugano
+machines:
+- ShopBot Buddy 48''
+- Ultimaker Original
+- ref: PEDK-9060
+  power: 60W
+- Zortrax M200
+- uPrint

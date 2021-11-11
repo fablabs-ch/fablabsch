@@ -1,0 +1,18 @@
+name: FabLab Zürich
+description: Das FabLab Zürich ist eine offene HighTech-Werkstatt.
+city: Zürich
+zip: '8004'
+street: Zimmerlistr. 6
+country_code: CH
+state_code: ZH
+latitude: 47.3839493
+longitude: 8.5100603
+founded:
+email: info@zurich.fablab.ch
+website: https://zurich.fablab.ch/
+facebook: fablabzurich
+twitter: fablabzurich
+language: DE
+events_ics: ''
+fablabsio: fablabzurich
+machines: []

@@ -1,0 +1,19 @@
+name: MonFabLab
+description: MonFabLab C'est un lieu - d'apprentissage et de formation. - pour échanger
+  et concrétiser des projets. - pour fabriquer différents objets selon les ressources
+  du FabLab. - pour réparer ou modifier des objets ou des appareils.
+city: genthod
+zip: '1294'
+street: Route de valavran 139
+country_code: CH
+state_code: Genève
+latitude: 46.264968
+longitude: 6.154844
+founded: 2020-06-15
+email: info@monfablab.ch
+website: https://www.monfablab.ch
+facebook: fablab1294
+twitter:
+language: FR
+events_ics: ''
+machines: []

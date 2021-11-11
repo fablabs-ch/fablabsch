@@ -1,0 +1,28 @@
+name: SDG Solution Space
+description: The University of Geneva (UNIGE) is running the Geneva SDG Solution Space,
+  a true workshop where students, researchers, humanitarian workers and UN experts
+  will gather to provide practical answers to the challenges of sustainable development.
+  The focus will be on the 17 SDGs — Sustainable Development Goals — set by the United
+  Nations in 2015. This new 300 m2 facility opened its doors on Friday 12th of May,
+  on the occasion of the third Open Geneva Hackathon which brings innovation to the
+  heart of the city. It is housed in the Biotech Innovation Park Campus in Sécheron,
+  in the centre of International Geneva. Users will enjoy state-of-the-art digital
+  technology (such as 3D printers and laser cutters) to help them develop prototypes,
+  validate projects and, more broadly, test the suitability of their ideas.
+city: Genève
+zip: '1202'
+street: Avenue de Sécheron 15
+country_code: CH
+state_code: GE
+latitude: 46.2206964
+longitude: 6.1448708
+founded:
+email: ''
+website: https://sdgsolutionspace.org/
+facebook: ''
+twitter: ''
+language: fr
+events_ics: ''
+fablabsio: sdgsolutionspace
+machines: []
+

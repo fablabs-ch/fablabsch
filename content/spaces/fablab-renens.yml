@@ -1,0 +1,30 @@
+name: FabLab Renens
+description: |-
+  (English below)
+
+  Le Fablab de Renens est situé dans les Ateliers de Renens, anciennes Imprimeries réunies lausannoises (IRL), partageant un local avec le hackerspace FIXME, au-dessus d'un Makersapce.
+
+  C'est un espace citoyen où la culture technique est à l'honneur, fréquenté par des gens de toute culture et de tous âges. Les machines numériques de ce lieu servent à réaliser les idées les plus folles ou à fabriquer des prototypes pour valider ou invalider un projet.
+
+
+  (English)
+  Fablab Renens is located in the Ateliers de Renens, which was before the Imprimeries réunies lausannoises (IRL), sharing a space with the hackerspace FIXME and above a Makerspace.
+
+  It is a citizen space, where the technical culture is honoured, frequented by people from varied fields and ages. The digital-controled machines are used to create the craziest ideas or to produce prototypes with the aim of validating or not a project.
+city: Renens
+zip: '1020'
+street: Closel 3
+country_code: CH
+state_code: VD
+latitude: 46.53215
+longitude: 6.59136
+founded: 2012-11-30
+email: fablab.renens@gmail.com
+website: https://www.fablab-renens.ch
+facebook: FabLabRenens
+twitter: fablabrenens
+language: plutôt francophone
+events_ics: ''
+machines:
+- Micro Delta
+- Gigabot
