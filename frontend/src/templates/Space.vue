@@ -61,7 +61,7 @@
               </p>
               <p class="text-center">
                 <v-btn
-                  :href="`https://github.com/fablabs-ch/fablabsch/blob/main/${$page.space.fileInfo.path}`"
+                  :href="`https://github.com/fablabs-ch/fablabsch/blob/main/${$page.space.fileInfo.path.replace('../', '')}`"
                   text
                   target="_blank"
                 >
