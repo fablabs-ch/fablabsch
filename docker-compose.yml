@@ -18,8 +18,7 @@ services:
     command: bash -c "python manage.py collectstatic --noinput;python manage.py migrate;while true; do sleep 3; /usr/local/bin/gunicorn fablabsch.wsgi --bind 0.0.0.0:8000 --chdir=/app; done"
     #command: bash -c "/usr/local/bin/gunicorn fablabsch.wsgi --bind 0.0.0.0:8000 --chdir=/app"
     volumes:
-      - ./backend/media:/app/media
-      - ./backend/static:/app/static
+      - ./backend:/app
     depends_on:
       - db
   frontend:
