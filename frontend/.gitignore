@@ -9,3 +9,4 @@ coverage
 .env.*
 static/img/spaces
 static/img/machines
+content

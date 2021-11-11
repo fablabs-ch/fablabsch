@@ -19,6 +19,7 @@ services:
     #command: bash -c "/usr/local/bin/gunicorn fablabsch.wsgi --bind 0.0.0.0:8000 --chdir=/app"
     volumes:
       - ./backend:/app
+      - ./content:/app/content
     depends_on:
       - db
   frontend:

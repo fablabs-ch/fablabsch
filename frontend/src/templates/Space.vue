@@ -56,7 +56,7 @@
                 <a
                   :href="`http://fablabs.io/${$page.space.fablabsio}`"
                   target="_blank"
-                  >{{ ($page.space.fablabsio && "yes") || "no" }}</a
+                  > {{ ($page.space.fablabsio && "yes") || "no" }}</a
                 >
               </p>
               <p class="text-center">
@@ -295,6 +295,9 @@ query Space($id: ID!) {
 
 .space-info p {
   margin: 0 0 1em 0;
+}
+.space-info p b {
+  margin-right: 8px;
 }
 
 .space {

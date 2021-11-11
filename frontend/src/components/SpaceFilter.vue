@@ -9,31 +9,27 @@
     absolute
   >
     <template #activator>
-      <v-btn v-model="fab" color="primary" fab>
-        <v-icon v-if="fab">
-          mdi-close
-        </v-icon>
-        <v-icon v-else>
-          mdi-filter-outline
-        </v-icon>
-      </v-btn>
+      <v-badge overlap :content="countVisible()" :value="!allSpaceVisible()">
+        <v-btn v-model="fab" color="primary" fab>
+          <v-icon v-if="fab"> mdi-close </v-icon>
+          <v-icon v-else> mdi-filter-outline </v-icon>
+        </v-btn>
+      </v-badge>
     </template>
     <v-btn
       v-for="space in spaces"
       :key="space.id"
       fab
       raised
-      :color="filteredSpaces[space.id] ? 'primary' : 'space'"
+      :color="filteredSpaces[space.id] ? 'primary' : 'white'"
       :title="space.name"
       @click.stop="toggleSpaceFilter(space.id)"
     >
       <v-avatar :class="{ hidden: !filteredSpaces[space.id] }">
-        <img :src="spaceLogoThumb(space)">
+        <img :src="spaceLogoThumb(space)" />
       </v-avatar>
     </v-btn>
-    <v-btn fab @click.stop="setSpaceFilterAll(true, true)">
-      ALL
-    </v-btn>
+    <v-btn fab @click.stop="setSpaceFilterAll(true, true)"> ALL </v-btn>
   </v-speed-dial>
 </template>
 <script>
@@ -90,6 +86,9 @@ export default {
         (key) => this.filteredSpaces[key]
       );
     },
+    countVisible() {
+      return Object.values(this.filteredSpaces).filter( v => v).length;
+    },
     noSpaceVisible() {
       return Object.keys(this.filteredSpaces).every(
         (key) => !this.filteredSpaces[key]
@@ -99,7 +98,7 @@ export default {
       Object.keys(this.filteredSpaces).forEach((key) => {
         this.filteredSpaces[key] = visible;
       });
-      if(save) {
+      if (save) {
         this.saveFilter();
       }
     },
