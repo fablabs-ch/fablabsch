@@ -16,7 +16,7 @@
         <div class="paragraph-text mt-2">
           <br>
           <br>Try going back to home page and repeating your action. Or, help
-          create it on <a href="TODO project url">GitHub</a>
+          create it on <a href="https://github.com/fablabs-ch/fablabsch/">GitHub</a>
         </div>
       </v-card>
     </v-container>
