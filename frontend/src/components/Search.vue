@@ -45,6 +45,7 @@
 </template>
 <script>
 import machineTypes from "@/data/machine_types.yml";
+import machineId from "@/utils/machineId";
 import { spaceLogoThumb, machineLogoThumb } from "@/utils/fallback";
 
 export default {
@@ -73,7 +74,7 @@ export default {
         this.$router.push(`/space/${item.id}`);
       }
       if (item.__type === "machine") {
-        this.$router.push(`/machines/#${item.id.replace(/ /g, '_')}`);
+        this.$router.push(`/machines/#${machineId(item.id)}`);
       }
       setTimeout(() => {
         this.search = null;

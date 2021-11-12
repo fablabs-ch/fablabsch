@@ -12,7 +12,7 @@
             class="col-12 col-sm-6 col-md-4 pa-2"
           >
             <v-card
-              :id="machine.id.replace(/ /g, '_')"
+              :id="machineId(machine.id)"
               class="fill-height d-flex flex-column machine"
             >
               <v-card-title>{{ machine.name }}</v-card-title>
@@ -72,6 +72,7 @@
 </template>
 <script>
 import machineTypes from "@/data/machine_types.yml";
+import machineId from "@/utils/machineId";
 import { spaceLogoThumb, machineLogo } from "@/utils/fallback";
 export default {
   props: {
@@ -88,6 +89,7 @@ export default {
   methods: {
     spaceLogoThumb,
     machineLogo,
+    machineId,
   },
 };
 </script>
