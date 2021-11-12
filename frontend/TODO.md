@@ -1,7 +1,6 @@
 # TODO
 document steps to submit PR / issue
 
-
 -- server
 test and validate parsers and cron?
     feeds for news?
@@ -23,4 +22,3 @@ cleanup django
 list missing machines on build?
 fallback for spaceThumb in events/news
 show slug name tooltip ?debug mode?
-allow for other images types than png?

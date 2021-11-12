@@ -17,7 +17,7 @@ Create issue or pull request for udpates.
 - To add a lab copy the content/spaces/_template.yml file
 - To edit a lab update the content/spaces/fablab_[name].
 yml file (name must be lowercase without spaces)
-- A lab logo must be a png file at the same loaction with minimum size of 160x160px
+- A lab logo must be a png, jpg or jpeg file at the same loaction with minimum size of 160x160px
 
 - Machines are defined in the content/machines/[type]/[vendor]/[model].yml file
 - Type used must be listed in the frontend/src/data/machine_types.yml file.

@@ -16,17 +16,29 @@ function parseYaml(content) {
   return typeof data !== "object" || Array.isArray(data) ? { data } : data;
 }
 
+function findExtension(srcImgFile) {
+  const extensions = ['png', 'jpg', 'jpeg'];
+  for (const ext of extensions) {
+    if (fs.existsSync(`${srcImgFile}.${ext}`)){
+      return `${srcImgFile}.${ext}`;
+    }
+  }
+  return;
+}
+
 async function createImage(node, options) {
   options.postfix = options.postfix || "";
   options.width = options.width || 400;
-  const srcImgFile = `${node.fileInfo.directory}/${node.fileInfo.name}.png`;
+  let srcImgFile = `${node.fileInfo.directory}/${node.fileInfo.name}`;
   const destDirectory = `./static/img/${node.fileInfo.subfolder}`;
   const destImgFile = `${destDirectory}/${node.fileInfo.name}${
     options.postfix
   }.webp`;
   try {
     await fs.promises.mkdir(destDirectory, { recursive: true });
-    if (fs.existsSync(srcImgFile)) {
+    srcImgFile = findExtension(srcImgFile)
+
+    if (srcImgFile) {
       await sharp(srcImgFile)
         .resize(options.width, options.height, {
           fit: 'contain',
