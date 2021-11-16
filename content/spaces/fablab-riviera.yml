@@ -1,28 +1,33 @@
 name: FabLab Riviera
 description: |-
-  Rejoingez-nous pour monter le Fablab-Riviera
-
+  Le Fablab-Riviera est installé dans le bâtiment annexe de la Fondation Les Eglantines (pour personnes en situation de handicap) à Vevey. Il est ouvert à tou•te•s. Il est géré par un vingtaine de passionnés de technologie, de développement durable, d’innovation et de partage. Nous formons tou•te•s ceux•elles qui le désirent et leur mettons à disposition des machines hi-tech comme des découpeuses laser, imprimantes 3D, fraiseuses CNC ou découpeuses vinyle, pour qu'il•elle•s puissent venir inventer, créer et réparer par eux•elles-même tout ce qu'il•elle•s veuvent. Nous essayons de favoriser les collaborations et échanges entre les membres, le public, les institutions, les écoles, les associations, les artisan•e•s, les artistes, les retraités et les familles de toute la riviera vaudoise.
 
 city: Vevey
-zip: 1800
+zip: '1800'
 street: Avenue de la Prairie 24
 country_code: CH
 state_code: VD
 latitude: 46.461281
 longitude: 6.858913
-founded: 2021-11-01
-email: fablab.riviera.project@gmail.com
+founded: 2020-11-09
+email: info@fablab-riviera.ch
 website: https://fablab-riviera.ch/
-# facebook: username
+facebook: fablabriviera
 # facebook_filter: '#FablabBB' #optional hashtag which needs to be in content to consider post
-# twitter: username
+twitter: FablabRiviera
 # twitter_filter: ' #FablabBB' #optional hashtag which needs to be in content to consider post
-lang: FR
-members:
-fablabsio:
-#events_ics: #url to a ics (google calendar for example)
+lang: FR, EN, DE, SP
+members: '50'
+fablabsio: 
+events_ics: https://calendar.google.com/calendar/ical/pr7lpgci16efk9e64pp6l0cpdc%40group.calendar.google.com/public/basic.ics
 #events_ics_filter: '#\w*' # optional regex to filter posts
 machines:
+- ref: Speedy 300
+  power: 60W
+- Ultimaker 2+
+- Prusa MK3S+
+- Cameo
+- Press T-Shirt
 #- Machine Name #must be a name of a yml file which exist in machines subfolder
 #- ref: Machine Name # ref version to add attribute for this specific machine and this lab
 #  power: 100W
