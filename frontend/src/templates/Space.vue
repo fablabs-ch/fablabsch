@@ -3,7 +3,11 @@
     <v-container>
       <div class="space-background-fill" />
       <section class="space">
-        <v-sheet id="logo" elevation="1" :class="{'logo-sm': $vuetify.breakpoint.xs}">
+        <v-sheet
+          id="logo"
+          elevation="1"
+          :class="{ 'logo-sm': $vuetify.breakpoint.xs }"
+        >
           <v-img :src="spaceLogo($page.space)" alt="logo" />
         </v-sheet>
         <v-sheet class="pa-5" color="white" elevation="1">
@@ -56,12 +60,16 @@
                 <a
                   :href="`http://fablabs.io/${$page.space.fablabsio}`"
                   target="_blank"
-                  > {{ ($page.space.fablabsio && "yes") || "no" }}</a
+                >
+                  {{ ($page.space.fablabsio && "yes") || "no" }}</a
                 >
               </p>
               <p class="text-center">
                 <v-btn
-                  :href="`https://github.com/fablabs-ch/fablabsch/blob/main/${$page.space.fileInfo.path.replace('../', '')}`"
+                  :href="`https://github.com/fablabs-ch/fablabsch/blob/main/${$page.space.fileInfo.path.replace(
+                    '../',
+                    ''
+                  )}`"
                   text
                   target="_blank"
                 >
@@ -72,15 +80,14 @@
             <v-col class="col-12 offset-md-1 col-md-6">
               <p v-html="description" />
               <h3 class="tetx-h4 my-3">Adresse</h3>
-              <div class="space-map">
+              <div
+                v-if="
+                  $page.space.latitude && $page.space.longitude && map && marker
+                "
+                class="space-map"
+              >
                 <ClientOnly>
                   <l-map
-                    v-if="
-                      $page.space.latitude &&
-                      $page.space.longitude &&
-                      map &&
-                      marker
-                    "
                     :zoom="map.zoom"
                     :center="map.center"
                     :max-bounds="map.maxBounds"
