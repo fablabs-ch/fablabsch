@@ -373,7 +373,7 @@ def export_spaces(request):
             image.save("%s/%s.png" % (folder, space.slug))
     return HttpResponse("done")
 
-def import_spaces():
+def import_spaces(request):
     folder = '/app/content/spaces'
     for file in os.listdir(folder):
         if file.endswith(".yml") and not file.startswith('_'):
