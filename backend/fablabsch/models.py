@@ -18,8 +18,9 @@
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.translation import ugettext_lazy as _
 from django.db import models
-from django.contrib.postgres.fields import JSONField
+from django.db.models import JSONField
 from django.core.validators import URLValidator
+from django.utils import timezone
 
 
 class Vendor(models.Model):
@@ -125,7 +126,7 @@ class Post(models.Model):
     message = models.TextField(verbose_name=_('message'), blank=True, null=False)
     link = models.TextField(verbose_name=_('link'), validators=[URLValidator()], blank=True, null=False)
     show = models.BooleanField(verbose_name=_('show'), default=True)
-    created_at = models.DateTimeField(verbose_name='created at', auto_created=True)
+    created_at = models.DateTimeField(verbose_name='created at', default=timezone.now)
 
     class Meta:
         ordering = ('-created_at',)

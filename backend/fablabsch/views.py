@@ -37,6 +37,9 @@ from ruamel.yaml import YAML
 from ruamel.yaml.representer import RoundTripRepresenter
 from django_filters import rest_framework as filters
 from django.utils.text import slugify
+from facebook_scraper import get_posts
+from django.utils.timezone import make_aware
+import os
 
 
 def repr_str(dumper: RoundTripRepresenter, data: str):
@@ -50,76 +53,26 @@ yaml.representer.add_representer(str, repr_str)
 
 
 def handle_facebook_post(space, fb_post, filter):
-    if not Post.objects.filter(source_type=Post.FACEBOOK, source_id=fb_post['id']).exists():
+    if not Post.objects.filter(source_type=Post.FACEBOOK, source_id=fb_post['post_id']).exists():
         post = Post()
         post.space = space
         post.source_type = Post.FACEBOOK
-        post.source_id = fb_post['id']
-        post.created_at = datetime.strptime(
-            fb_post['created_time'], '%Y-%m-%dT%H:%M:%S+0000')
+        post.source_id = fb_post['post_id']
+        post.created_at = make_aware(fb_post['time'])
+        post.type = Post.LINK
+        post.link = fb_post['link'] or ""
 
-        if fb_post['type'] == 'photo':
+        if fb_post['image']:
             post.type = Post.PHOTO
-            if 'message' in fb_post:
-                post.message = fb_post['message']
-            post.link = fb_post['link']
+            post.message = fb_post['text']
             post.save()
-            if 'attachments' in fb_post:
-                for d in fb_post['attachments']['data']:
-                    for m in d['subattachments']['data']:
-                        if m['type'] == 'photo':
-                            pi = PostImage()
-                            pi.src = m['media']['image']['src']
-                            pi.width = m['media']['image']['width']
-                            pi.height = m['media']['image']['height']
-                            if 'description' in m:
-                                pi.title = m['description']
-                            if 'url' in m:
-                                pi.link = m['url']
-                            pi.post = post
-                            pi.save()
-            elif 'full_picture' in fb_post:
+            for i in range(len(fb_post['images'])):
                 pi = PostImage()
-                pi.src = fb_post['full_picture']
-                pi.post = post
-                pi.save()
-
-        if fb_post['type'] == 'link' or fb_post['type'] == 'event':
-            post.message = "%s\n\n" % fb_post['name']
-            if 'description' in fb_post:
-                post.message += fb_post['description']
-            post.type = Post.LINK
-            post.link = fb_post['link']
-            if fb_post['type'] == 'event':
-                post.type = Post.EVENT
-                # link contains event do something
-
-            post.save()
-            if 'full_picture' in fb_post:
-                pi = PostImage()
-                pi.src = fb_post['full_picture']
-                pi.post = post
-                pi.save()
-
-        if fb_post['type'] == 'status':
-            post.type = Post.STATUS
-            post.message = fb_post['message']
-            post.save()
-
-        if fb_post['type'] == 'video':
-            post.type = Post.VIDEO
-            post.link = fb_post['source']
-            post.message = ""
-            if 'name' in fb_post:
-                post.message = "%s\n\n" % fb_post['name']
-            if 'message' in fb_post:
-                post.message += fb_post['message']
-            if 'description' in fb_post:
-                post.message += fb_post['description']
-            post.save()
-            if 'full_picture' in fb_post:
-                pi = PostImage()
-                pi.src = fb_post['full_picture']
+                pi.src = fb_post['images'][i]
+                try:
+                    pi.title = fb_post['images_description'][i]
+                except:
+                    pi.title = ""
                 pi.post = post
                 pi.save()
 
@@ -138,13 +91,11 @@ def facebook_feed_import(space):
     except Exception as e:
         print('REGEX_ERROR', e)
 
-    graph = requests.get('https://graph.facebook.com/%s/posts?limit=100&fields=created_time,caption,description,link,message,name,full_picture,type,source,attachments{subattachments}&access_token=%s' % (
-        space.facebook, FACEBOOK_ACCESS_TOKEN)).json()
-    for fb_post in graph['data']:
+    for fb_post in get_posts(space.facebook, pages=3):
         try:
             handle_facebook_post(space, fb_post, filter)
         except Exception as e:
-            print(e)
+            print("Facebook Post Error", e)
 
 
 def handle_twitter_post(space, tweet, filter):
@@ -156,8 +107,8 @@ def handle_twitter_post(space, tweet, filter):
             post.space = space
             post.source_type = Post.TWITTER
             post.source_id = tweet['id_str']
-            post.created_at = datetime.strptime(
-                tweet['created_at'], '%a %b %d %H:%M:%S +0000 %Y')
+            post.created_at = make_aware(datetime.strptime(
+                tweet['created_at'], '%a %b %d %H:%M:%S +0000 %Y'))
             message = tweet['text']
             if 'entities' in tweet and 'urls' in tweet['entities']:
                 for url in tweet['entities']['urls']:
@@ -195,7 +146,7 @@ def twitter_feed_import(space):
         try:
             handle_twitter_post(space, tweet, filter)
         except Exception as e:
-            print(e)
+            print("Twitter Post Error", e)
 
 
 def facebook_page_import(request, facebook_id):
@@ -236,11 +187,11 @@ def cron_import(request):
         try:
             facebook_feed_import(space)
         except Exception as e:
-            print(e)
+            print("Facebook import error", e)
         try:
             twitter_feed_import(space)
         except Exception as e:
-            print(e)
+            print("Twitter import error", e)
     return HttpResponse('done')
     # compare likes?
 
@@ -420,6 +371,37 @@ def export_spaces(request):
             if image.mode not in ["1", "L", "P", "RGB", "RGBA"]:
                 image = image.convert("RGB")
             image.save("%s/%s.png" % (folder, space.slug))
+    return HttpResponse("done")
+
+def import_spaces():
+    folder = '/app/content/spaces'
+    for file in os.listdir(folder):
+        if file.endswith(".yml") and not file.startswith('_'):
+            with open("%s/%s" % (folder, file), 'r') as streamFile:
+                s_data = yaml.load(streamFile)
+                slug = file.replace('.yml', '')
+                print(slug)
+                try:
+                    space = Space.objects.get(slug=slug)
+                except Space.DoesNotExist:
+                    space = Space()
+                space.slug = slug
+                space.name = s_data['name']
+                space.description = s_data['description']
+                space.city = s_data['city']
+                space.zip = s_data['zip']
+                space.street = s_data['street']
+                space.country = s_data['country_code']
+                space.state = s_data['state_code']
+                space.latitude = s_data['latitude']
+                space.longitude = s_data['longitude']
+                space.founded = s_data['founded']
+                space.email = s_data['email']
+                space.website = s_data['website']
+                space.facebook = s_data['facebook']
+                space.twitter = s_data['twitter']
+                space.save()
+
     return HttpResponse("done")
 
 # API

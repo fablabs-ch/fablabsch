@@ -132,6 +132,7 @@ ANONYMOUS_USER_ID = -1
 
 WSGI_APPLICATION = 'fablabsch.wsgi.application'
 
+DEFAULT_AUTO_FIELD='django.db.models.AutoField' 
 
 # DATABASE CONFIGURATION
 # ------------------------------------------------------------------------------

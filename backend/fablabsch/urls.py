@@ -44,6 +44,7 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('export/machines', views.export_machines),
     path('export/spaces', views.export_spaces),
+    path('import/spaces', views.import_spaces),
     path('cron/import', views.cron_import),
     path('cron/fablabsio', views.cron_fablabsio),
     path('cron/fablabis', views.cron_fablabis),
