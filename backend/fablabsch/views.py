@@ -400,6 +400,7 @@ def import_spaces(request):
                 space.website = s_data['website']
                 space.facebook = s_data['facebook']
                 space.twitter = s_data['twitter']
+                space.events_ics = s_data['events_ics']
                 space.save()
 
     return HttpResponse("done")
