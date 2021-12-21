@@ -60,11 +60,11 @@ def handle_facebook_post(space, fb_post, filter):
         post.source_id = fb_post['post_id']
         post.created_at = make_aware(fb_post['time'])
         post.type = Post.LINK
-        post.link = fb_post['link'] or ""
+        post.link = fb_post['link'] or ''
 
         if fb_post['image']:
             post.type = Post.PHOTO
-            post.message = fb_post['text']
+            post.message = fb_post['text'] or ''
             post.save()
             for i in range(len(fb_post['images'])):
                 pi = PostImage()
