@@ -1,4 +1,4 @@
-django==3.2.9
+django==3.2.12
 psycopg2==2.9.2
 r-django-jet==2.0.9 # fork fix python2-3 issues
 google-api-python-client==2.32.0
