@@ -1,23 +1,22 @@
 name: Makerspace Reinach
-description:  Bastelst du gerne mit Elektronik? Reparierst Du gerne Dinge, 
-              oder möchtest es lernen? Themen wie Arduino, Raspberry Pi, 
-              ESP8266, Maschine Learning, IoT, Elektronik, 3D Druck, Javascript, 
+description:  Bastelst du gerne mit Elektronik? Reparierst Du gerne Dinge,
+              oder möchtest es lernen? Themen wie Arduino, Raspberry Pi,
+              ESP8266, Maschine Learning, IoT, Elektronik, 3D Druck, Javascript,
               Webentwicklung und Modellbau interessieren Dich? Dann mach bei uns mit.
 city: Reinach
 zip: '4153'
 street: Kägenhofweg 7
 country_code: CH
-state_code: ''
+state_code: BL
 latitude: 47.4892603
 longitude: 7.5994335
 founded: 2021-09-16
 email: info@makerspace-reinach.ch
-website: https://makerspace-reinach.ch
-facebook: ''
-twitter: 'makerspacerein1'
+website: https://makerspace-reinach.ch/
+twitter: MakerspaceRein1
 language: de
 events_ics: ''
 members: 20
 fablabsio: makerspacereinach
-machines: 
+machines:
 - OMTech_100W
