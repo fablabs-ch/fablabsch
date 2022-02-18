@@ -19,4 +19,5 @@ events_ics: ''
 members: 20
 fablabsio: makerspacereinach
 machines:
-- OMTech_100W
+- ref: OMTech_100W
+  power: 100W
