@@ -16,10 +16,10 @@ language: FR
 events_ics: ''
 fablabsio: fablabsion
 machines:
-- ref: Cameo
+- Cameo
 - ref: Zortrax M200
   qty: 2
-- ref: Form2
+- Form2
 - ref: BCL-0605MU
   power: 90W,150W
-- ref: Zortrax M300Dual
+- Zortrax M300Dual
