@@ -20,7 +20,7 @@
     "vue-infinite-loading": "^2.4.5",
     "vue-masonry": "^0.13.0",
     "vue2-leaflet": "2.7.1",
-    "vuetify": "2.5.12"
+    "vuetify": "2.6.10"
   },
   "devDependencies": {
     "deepmerge": "4.2.2",
