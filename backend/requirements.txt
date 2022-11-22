@@ -15,7 +15,7 @@ django-localflavor==3.1
 django-reversion==4.0.1
 django-reversion-compare==0.14.1
 diff-match-patch==20200713
-Pillow==8.4.0
+Pillow==9.3.0
 icalendar==4.0.9
 django-ckeditor==6.2.0
 whitenoise==5.3.0
