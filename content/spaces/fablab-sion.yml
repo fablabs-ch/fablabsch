@@ -2,7 +2,7 @@ name: FabLab Sion
 description: ''
 city: Sion
 zip: '1950'
-street: Espace Création, Rte de la Dixence 10
+street: Fabulle, c/o Energypolis, Rue de l'Industrie 23
 country_code: CH
 state_code: VS
 latitude: 46.23059
@@ -16,10 +16,14 @@ language: FR
 events_ics: ''
 fablabsio: fablabsion
 machines:
-- Cameo
+- Silhouette Cameo 2
+- Laser Bodor HT-6040, Hopetool
+- Trotec Speedy 360
+- Prusa Mk3S+
 - ref: Zortrax M200
   qty: 2
-- Form2
-- ref: BCL-0605MU
-  power: 90W,150W
 - Zortrax M300Dual
+- ref: Form2
+  qty: 2
+- CNC Inventables
+- CNC portative Shapertools
