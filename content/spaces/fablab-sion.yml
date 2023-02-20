@@ -5,8 +5,8 @@ zip: '1950'
 street: Fabulle, c/o Energypolis, Rue de l'Industrie 23
 country_code: CH
 state_code: VS
-latitude: 46.23059
-longitude: 7.3631
+latitude: 46.2271502
+longitude: 7.3643017
 founded: 2015-01-01
 email: info@fablabsion.ch
 website: https://fablabsion.ch
@@ -16,14 +16,14 @@ language: FR
 events_ics: ''
 fablabsio: fablabsion
 machines:
-- Silhouette Cameo 2
-- Laser Bodor HT-6040, Hopetool
-- Trotec Speedy 360
-- Prusa Mk3S+
+- Cameo2
+- HT-6040
+- Speedy 360
+- Prusa MK3S+
 - ref: Zortrax M200
   qty: 2
 - Zortrax M300Dual
 - ref: Form2
   qty: 2
 - CNC Inventables
-- CNC portative Shapertools
+- Sharpertools Origin
