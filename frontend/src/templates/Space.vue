@@ -78,7 +78,7 @@
               </p>
             </v-col>
             <v-col class="col-12 offset-md-1 col-md-6">
-              <p v-html="description" />
+              <div><div v-html="description" /></div>
               <h3 class="tetx-h4 my-3">Adresse</h3>
               <div
                 v-if="
