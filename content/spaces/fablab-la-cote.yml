@@ -4,12 +4,12 @@ description: |-
 
   Pour y parvenir nous mettons à disposition des machines, du matériel et des outils à des prix abordables. Des activités créatives et d'initiations aux domaines techniques sont organisées
 city: Nyon
-zip: '1260'
-street: Route de champ Collin 11
+zip: '1273'
+street: Rue du Village 8A
 country_code: CH
 state_code: VD
-latitude: 46.38353
-longitude: 6.21673
+latitude: 46.4594199
+longitude: 6.2095767
 founded: 2013-11-25
 email: info@fablab-lacote.ch
 website: https://www.fablab-lacote.ch
@@ -20,10 +20,10 @@ events_ics: https://calendar.google.com/calendar/ical/of3ji1ep9d7djkquvuma3hj31o
 members: 30
 fablabsio: fablablacote
 machines:
-- PCUT CT
-- K8200
-- MendelMax 2
 - ref: Speedy 100
   power: 150W
 - Cameo
+- Prusa MK3S+
+- StepCraft
+- Press T-Shirt
 
