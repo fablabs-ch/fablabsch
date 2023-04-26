@@ -13,17 +13,19 @@ founded: 2017-10-12
 email: contact@onlfait.ch
 website: https://www.onlfait.ch
 facebook: onlfait
-twitter:
-language: FR, EN, IT
+twitter: FabLabOnlfait
+language: FR, EN, IT, ES
 events_ics: ''
 fablabsio: onlfait
 machines:
 - Cameo
 - Itopie
-- OpenBuilds-OX
 - ref: 1060SP
   power: 90W
 - ShopBot Buddy 48''
 - CR-20
+- Ratrig V-Core 3
 - Photon
-- LGK-100IGBT
+- Brother Innov-is F480
+- Shaper origin
+- Vacuum former 725FLB
