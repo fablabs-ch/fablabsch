@@ -19,12 +19,15 @@ state_code: VD
 latitude: 46.53215
 longitude: 6.59136
 founded: 2012-11-30
-email: fablab.renens@gmail.com
+email: info@fablab-renens.ch
 website: https://www.fablab-renens.ch
 facebook: FabLabRenens
 twitter: fablabrenens
 language: plutôt francophone
 events_ics: ''
 machines:
+- Ultimaker 3
+- Prusa SL1S
+- lasercut
 - Micro Delta
 - Gigabot
