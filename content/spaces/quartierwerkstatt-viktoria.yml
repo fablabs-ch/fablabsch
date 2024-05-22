@@ -1,6 +1,12 @@
-name: Quartier Werkstatt Viktoria
+name: Quartierwerkstatt Viktoria
 description: |-
-  Die Freizeitwerkstätte im Berner Nordquartier
+  Die Freizeitwerkstätte im Berner Nordquartier. Die Quartierwerkstatt setzt sich zusammen aus dem Fablab,
+  mit Elektronikbereich und den unten aufgeführten Maschinen, einem grossen Holz- und Metallbereich, sowie einer
+  Lackierkabine. Der Holzbereich besteht unter anderem aus einer Tischreissäge, einer Hobelbank, mehreren
+  Bandkreissägen, einer Kapp-/Gehrungssäge, einer Drechselmaschine, einer vertikalen Plattensäge (Striebig),
+  sowie diversen Handmaschinen. Der Metallbereich besteht aus einem Schweiss- und Lötbereich, einer Metallkreissäge,
+  einer Bohr-/Fräsmaschine, einer Drehbank, sowie mehreren Handmaschinen. Mehr Informationen findest du auf unserer
+  Webseite.
 city: Bern
 zip: '3013'
 street: Gotthelfstrasse 29
@@ -12,3 +18,13 @@ founded: 2015-08-15
 email: fablab@quartierwerkstatt-viktoria.ch
 website: https://www.quartierwerkstatt-viktoria.ch/
 language: DE
+machines:
+- Viktoria CnC
+- AKJ6090
+- Prusa XL
+- Prusa MK3S
+- Prusa Mini+
+- Photon
+- SL 740
+- Shapertools Origin
+- Schulze XXL
