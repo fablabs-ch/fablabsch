@@ -1,20 +1,46 @@
 name: Y-FabLab
 description: |-
   Y-FabLab est une association à but non lucratif dont la mission consiste à mettre à disposition de la population nord-vaudoise un lieu de créativité et de fabrication numérique ouvert à toutes et à tous.
+  La spécificité par rapport à d'autres fablab est peut-être de disposer d'un atelier soudure, d'un atelier bois et d'un atelier mécanique ne plus des outils numériques habituels
   categories
 city: Yverdon-les-Bains
 zip: '1400'
-street: Avenue de Grandson 48
+street: Av. des Sports 5
 country_code: CH
 state_code: ''
-latitude: 46.7880936
-longitude: 6.6287796
+latitude: 46.782243
+longitude: 6.648779
 founded: 2017-05-01
 email: info@y-fablab.ch
 website: https://www.y-fablab.ch
-facebook: yfablab
+facebook: Y-FabLab
 twitter: ''
 language: FR
 events_ics: https://calendar.google.com/calendar/ical/6sp8qpmmr83g46oshrclekdl9o%40group.calendar.google.com/public/basic.ics
 machines:
 - Cameo
+- Bodor BCL-1309X
+- Prusa MK3S
+- Bambu Lab P1S
+- Creality 3D CR-10S pro
+- Schaublin 102
+- Charlyi 4T
+- Charly DMC 600
+- Kiener & Wittlin 
+- Mini-Max ST3
+- Mini-Max FS30
+- Mini-Max S-45
+- Flott SB 16 ST
+  #- CNC bois 
+- Metabo KGS 305 M
+  #- Holzstar HBS 251 (scie à ruban)
+- Finess
+- Thomas Mod 250 export
+  #- Soucar (Pince de soudage par points)
+- MinarcMig 190 auto
+- L-Tec TIG 180 AC DC
+- Suma S 75 D serie 
+  #- Epoca Rancilio (Machine à expresso, parce que nous on ne rigole pas avec le café)
+
+
+
