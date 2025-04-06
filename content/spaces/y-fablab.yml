@@ -19,22 +19,22 @@ language: FR
 events_ics: https://calendar.google.com/calendar/ical/6sp8qpmmr83g46oshrclekdl9o%40group.calendar.google.com/public/basic.ics
 machines:
 - Cameo
-- Bodor BCL-1309X
+- BCL-1309X
 - Prusa MK3S
 - Bambu Lab P1S
-- Creality 3D CR-10S pro
+- CR-10S pro
 - Schaublin 102
-- Charlyi 4T
-- Charly DMC 600
+- CHARLY 4T
+- CHARLY DMC 600
 - Kiener & Wittlin 
 - Mini-Max ST3
 - Mini-Max FS30
 - Mini-Max S-45
 - Flott SB 16 ST
-  #- CNC bois 
+- CNC 3020
 - Metabo KGS 305 M
   #- Holzstar HBS 251 (scie à ruban)
-- Finess
+- finesse
 - Thomas Mod 250 export
   #- Soucar (Pince de soudage par points)
 - MinarcMig 190 auto
