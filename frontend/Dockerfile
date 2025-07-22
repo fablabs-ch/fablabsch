@@ -1,4 +1,4 @@
-FROM node:16 AS builder
+FROM node:22 AS builder
 WORKDIR /usr/src/app
 COPY ./frontend/package.json /usr/src/app/package.json
 RUN yarn
