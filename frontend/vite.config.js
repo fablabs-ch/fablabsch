@@ -18,5 +18,7 @@ export default defineConfig({
       '@content': fileURLToPath(new URL('./content', import.meta.url)),
     },
   },
-  base: '/',
+  // Use '/' if deploying to custom domain or root of GitHub Pages
+  // Use '/fablabsch/' if deploying to https://fablabs-ch.github.io/fablabsch/
+  base: process.env.BASE_PATH || '/',
 })
