@@ -94,13 +94,3 @@ export default {
     rgba(17, 17, 26, 0.25) 0px 8px 32px;
 }
 </style>
-
-.map-legend {
-  position: absolute;
-  width: 250px;
-  top: 20px;
-  right: 20px;
-  max-height: 80vh;
-  z-index: 999;
-}
-</style>
