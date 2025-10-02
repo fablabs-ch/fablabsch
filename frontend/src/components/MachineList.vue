@@ -9,15 +9,15 @@
           <v-col
             v-for="machine in group"
             :key="machine.id"
-            class="col-12 col-sm-6 col-md-4 pa-2"
+            class="col-12 col-sm-6 col-md-4 pa-2 d-flex"
           >
             <v-card
               :id="machineId(machine.id)"
-              class="fill-height d-flex flex-column machine"
+              class="d-flex flex-column machine w-100"
             >
               <v-card-title>{{ machine.name }}</v-card-title>
               <v-card-subtitle>{{ machine.vendor }}</v-card-subtitle>
-              <v-img :src="machineLogo(machine)" :alt="machine.name" />
+              <v-img :src="machineLogo(machine)" :alt="machine.name" aspect-ratio="1.5" cover />
               <v-card-text>
                 <ul class="text-none pa-0">
                   <li v-if="machine.qty">
@@ -31,7 +31,8 @@
                   </li>
                 </ul>
               </v-card-text>
-              <v-card-text v-if="machine.spaces">
+              <v-spacer />
+              <v-card-text v-if="machine.spaces" class="mt-auto">
                 <div
                   class="text-subtitle-2 py-2"
                   :class="{ 'text-error': machine.spaces.length === 0 }"
@@ -93,6 +94,14 @@ export default {
 <style scoped>
 .machine ul {
   list-style-type: none;
+}
+
+.machine {
+  height: 100%;
+}
+
+.w-100 {
+  width: 100%;
 }
 </style>
 

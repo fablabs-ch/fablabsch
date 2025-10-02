@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="pa-0 fill-height large-map">
-    <div v-if="map" ref="mapContainer" class="map-container" />
+    <div ref="mapContainer" class="map-container" />
   </v-container>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { loadData } from '@/utils/dataLoader'
 import { spaceLogo } from '@/utils/fallback'
@@ -28,6 +28,14 @@ export default {
 
     onMounted(async () => {
       const data = await loadData()
+      
+      // Wait for next tick to ensure DOM is ready
+      await nextTick()
+      
+      if (!mapContainer.value) {
+        console.error('Map container not found')
+        return
+      }
       
       // Initialize map
       const leafletMap = L.map(mapContainer.value, {

@@ -3,8 +3,11 @@
     <v-navigation-drawer v-model="drawer" temporary app style="z-index: 9999">
       <v-app-bar flat color="secondary" class="header-bar">
         <img src="/assets/logo.svg" width="40" height="40" class="mx-2" />
-        <v-toolbar-title class="primary--text">Swiss FabLabs</v-toolbar-title>
+        <v-toolbar-title class="text-primary">Swiss FabLabs</v-toolbar-title>
       </v-app-bar>
+      <div class="px-3 py-5">
+        <Search />
+      </div>
       <v-list>
         <v-list-item
           v-for="link in links"
@@ -19,12 +22,15 @@
 
     <v-app-bar flat app color="secondary" class="header-bar">
       <v-app-bar-nav-icon
-        class="primary--text"
+        class="text-primary"
         @click="drawer = !drawer"
       />
       <img src="/assets/logo.svg" width="40" height="40" class="mx-2" />
-      <v-toolbar-title class="primary--text">Swiss FabLabs</v-toolbar-title>
+      <v-toolbar-title class="text-primary">Swiss FabLabs</v-toolbar-title>
       <v-spacer />
+      <div class="d-none d-sm-flex">
+        <Search />
+      </div>
       <v-spacer class="d-none d-md-flex" />
       <v-btn
         v-for="link in links"
@@ -45,8 +51,13 @@
 </template>
 
 <script>
+import Search from './components/Search.vue'
+
 export default {
   name: 'App',
+  components: {
+    Search,
+  },
   data() {
     return {
       drawer: null,
