@@ -1,71 +1,67 @@
-// This is the main.js file. Import global CSS and scripts here.
-// The Client API can be used here. Learn more: gridsome.org/docs/client-api
-import "leaflet/dist/leaflet.css";
-import "vuetify/dist/vuetify.min.css";
-import Vuetify from "vuetify/lib/framework";
-import { VBtn } from "vuetify/lib";
-import DefaultLayout from "~/layouts/Default.vue";
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/styles'
+import 'leaflet/dist/leaflet.css'
 
-export default function(Vue, { appOptions, head, router }) {
-  head.link.push({
-    rel: "stylesheet",
-    href:
-      "https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900",
-  });
+import App from './App.vue'
+import Map from './pages/Map.vue'
+import Labs from './pages/Labs.vue'
+import Machines from './pages/Machines.vue'
+import Space from './pages/Space.vue'
+import About from './pages/About.vue'
 
-  head.link.push({
-    rel: "stylesheet",
-    href:
-      "https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css",
-  });
+const routes = [
+  { path: '/', redirect: '/map' },
+  { path: '/map/', component: Map },
+  { path: '/labs/', component: Labs },
+  { path: '/machines/', component: Machines },
+  { path: '/space/:id', component: Space },
+  { path: '/about/', component: About },
+]
 
-  router.options.scrollBehavior = (to, from, savedPosition) => {
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
-      return savedPosition;
+      return savedPosition
     } else if (to.hash) {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            selector: decodeURIComponent(to.hash),
-            offset: {x: 0, y: 100},
-            behavior: "smooth",
-            });
-        }, 100);
-      });
+            el: decodeURIComponent(to.hash),
+            top: 100,
+            behavior: 'smooth',
+          })
+        }, 100)
+      })
     } else {
-      return { x: 0, y: 0, behavior: "smooth" };
+      return { top: 0, behavior: 'smooth' }
     }
-  };
+  },
+})
 
-  Vue.use(Vuetify, {
-    components: {
-      VBtn, // Global import of Vuetify's VBtn component for MdPages
-    },
-  });
-
-  if (process.isClient) {
-    const VueMasonryPlugin = require("vue-masonry").VueMasonryPlugin;
-    Vue.use(VueMasonryPlugin);
-  }
-
-  appOptions.vuetify = new Vuetify({
-    theme: {
-      themes: {
-        light: {
-          primary: "#E10707",
-          secondary: "#FFFFFF",
-          /*
-          accent: "#82B1FF",
-          error: "#FF5252",
-          info: "#2196F3",
-          success: "#4CAF50",
-          warning: "#FFC107"
-          */
+const vuetify = createVuetify({
+  components,
+  directives,
+  theme: {
+    themes: {
+      light: {
+        colors: {
+          primary: '#E10707',
+          secondary: '#FFFFFF',
         },
       },
     },
-  });
+  },
+})
 
-  // Set default layout as a global component
-  Vue.component("Layout", DefaultLayout);
-}
+const app = createApp(App)
+app.use(router)
+app.use(vuetify)
+app.mount('#app')
+
