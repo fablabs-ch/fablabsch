@@ -1,36 +1,32 @@
 {
   "name": "fablabs.ch",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "gridsome build",
-    "develop": "gridsome develop",
-    "explore": "gridsome explore",
+    "dev": "vite",
+    "build": "node scripts/build-data.js && vite build",
+    "preview": "vite preview",
     "serve": "http-server ./dist",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
-    "@gridsome/plugin-google-analytics": "0.1.2",
-    "@gridsome/vue-remark": "0.2.6",
-    "globby": "11.0.4",
-    "gridsome": "0.7.23",
-    "http-server": "14.0.0",
-    "js-yaml": "4.1.0",
-    "leaflet": "1.7.1",
-    "marked": "4.0.0",
-    "vue-infinite-loading": "^2.4.5",
-    "vue-masonry": "^0.13.0",
-    "vue2-leaflet": "2.7.1",
-    "vuetify": "2.5.12"
+    "@mdi/font": "^7.4.47",
+    "leaflet": "^1.9.4",
+    "marked": "^16.3.0",
+    "vue": "^3.5.22",
+    "vue-router": "^4.5.1",
+    "vuetify": "^3.10.4"
   },
   "devDependencies": {
-    "deepmerge": "4.2.2",
-    "eslint": "7.32.0",
-    "eslint-plugin-gridsome": "1.6.2",
-    "eslint-plugin-vue": "8.0.3",
-    "sass": "~1.32.12",
-    "sass-loader": "7.3.1",
-    "sharp": "0.25.4",
-    "vue-eslint-parser": "8.0.1",
-    "vuetify-loader": "1.7.3"
+    "@rollup/plugin-yaml": "^4.1.2",
+    "@vitejs/plugin-vue": "^6.0.1",
+    "eslint": "^9.36.0",
+    "fs-extra": "^11.3.2",
+    "globby": "^15.0.0",
+    "js-yaml": "^4.1.0",
+    "sharp": "^0.34.4",
+    "vite": "^7.1.8",
+    "vite-plugin-vuetify": "^2.1.2",
+    "vue-eslint-parser": "^10.2.0"
   }
 }

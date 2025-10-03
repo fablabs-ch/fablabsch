@@ -10,3 +10,6 @@ coverage
 static/img/spaces
 static/img/machines
 content
+public/data
+public/img/machines
+public/img/spaces

@@ -1,7 +1,7 @@
 <template>
   <section>
-    <template v-for="(group, key) in groupedMachines">
-      <div v-if="group.length > 0" :key="key">
+    <template v-for="(group, key) in groupedMachines" :key="key">
+      <div v-if="group.length > 0">
         <h3 :id="key" class="text-h5 mt-16 mb-6">
           {{ machineTypes[key] }}
         </h3>
@@ -9,16 +9,19 @@
           <v-col
             v-for="machine in group"
             :key="machine.id"
-            class="col-12 col-sm-6 col-md-4 pa-2"
+            cols="12"
+            sm="6"
+            md="4"
+            class="pa-2"
           >
             <v-card
               :id="machineId(machine.id)"
               class="fill-height d-flex flex-column machine"
             >
               <v-card-title>{{ machine.name }}</v-card-title>
-              <v-card-subtitle>{{ machine.vendor.id }}</v-card-subtitle>
-              <v-img :src="machineLogo(machine)" :alt="machine.name" />
-              <v-card-text>
+              <v-card-subtitle>{{ machine.vendor }}</v-card-subtitle>
+              <v-img :src="machineLogo(machine)" :alt="machine.name" aspect-ratio="1.5" cover class="flex-grow-0" />
+              <v-card-text class="flex-grow-0">
                 <ul class="text-none pa-0">
                   <li v-if="machine.qty">
                     <b>Quantity:</b> {{ machine.qty }}
@@ -31,32 +34,28 @@
                   </li>
                 </ul>
               </v-card-text>
-              <v-card-text v-if="machine.spaces">
+              <v-card-text v-if="machine.spaces" class="mt-auto flex-grow-0">
                 <div
                   class="text-subtitle-2 py-2"
-                  :class="{ 'error--text': machine.spaces.length === 0 }"
+                  :class="{ 'text-error': machine.spaces.length === 0 }"
                 >
                   Available at:
                 </div>
                 <v-tooltip
                   v-for="space in machine.spaces"
                   :key="space.id"
-                  bottom
+                  location="bottom"
                 >
-                  <template #activator="{ on, attrs }">
+                  <template #activator="{ props }">
                     <v-btn
                       :to="`/space/${space.id}`"
                       icon
-                      tile
-                      v-bind="attrs"
+                      flat
+                      v-bind="props"
                       class="mx-1"
-                      v-on="on"
                     >
-                      <v-avatar
-                        size="40"
-                        tile
-                      >
-                        <img :src="spaceLogoThumb(space)">
+                      <v-avatar size="40">
+                        <img :src="spaceLogoThumb(space)" />
                       </v-avatar>
                     </v-btn>
                   </template>
@@ -70,31 +69,34 @@
     </template>
   </section>
 </template>
+
 <script>
-import machineTypes from "@/data/machine_types.yml";
-import machineId from "@/utils/machineId";
-import { spaceLogoThumb, machineLogo } from "@/utils/fallback";
+import machineTypes from '@/data/machine_types.yml'
+import machineId from '@/utils/machineId'
+import { spaceLogoThumb, machineLogo } from '@/utils/fallback'
+
 export default {
+  name: 'MachineList',
   props: {
     groupedMachines: {
       type: Object,
       required: true,
     },
   },
-  data() {
+  setup() {
     return {
       machineTypes,
-    };
+      spaceLogoThumb,
+      machineLogo,
+      machineId,
+    }
   },
-  methods: {
-    spaceLogoThumb,
-    machineLogo,
-    machineId,
-  },
-};
+}
 </script>
-<style>
+
+<style scoped>
 .machine ul {
   list-style-type: none;
 }
 </style>
+
