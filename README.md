@@ -54,8 +54,4 @@ To enable GitHub Pages:
 2. Set Source to "GitHub Actions"
 3. The workflow will automatically deploy on push to main
 
-### Backend (Legacy - No Longer Used)
-  Django REST application for parsing twitter and facebook and exposing an api consumed by the frontend
-
-  *Note: The frontend no longer depends on the backend for map, spaces, and machines data.*
 
