@@ -18,6 +18,7 @@
                 <v-btn
                   :to="`/space/${space.id}`"
                   icon
+                  flat
                   class="mr-3"
                   :title="space.name"
                 >
@@ -64,9 +65,7 @@
       <small>* Based on machines listed on this page</small>
     </section>
 
-    <v-fab app bottom right small to="/machines#machines" icon="mdi-arrow-up-bold"></v-fab>
-
-    <v-fab absolute bottom right icon="$vuetify"></v-fab>
+    <v-fab app bottom right small color="secondary" to="/machines#machines" icon="mdi-arrow-up-bold"></v-fab>
 
     <h2 id="machines" class="text-h4 mt-16">Machines</h2>
     <v-chip-group @update:model-value="(val) => $router.push(`/machines/#${val}`)">

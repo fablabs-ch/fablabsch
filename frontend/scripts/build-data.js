@@ -115,9 +115,8 @@ async function createMachineNode(file) {
 async function buildData() {
   console.log('Building data from YAML files...');
 
-  // Clean output directories
+  // Clean output directories (but preserve fallback images)
   await fs.remove(OUTPUT_DIR);
-  await fs.remove(OUTPUT_IMG_DIR);
   await fs.ensureDir(OUTPUT_DIR);
   await fs.ensureDir(OUTPUT_IMG_DIR);
 
