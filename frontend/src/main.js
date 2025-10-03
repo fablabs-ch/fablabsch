@@ -1,18 +1,18 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
 import 'vuetify/styles'
 import 'leaflet/dist/leaflet.css'
 
 import App from './App.vue'
-import Map from './pages/Map.vue'
-import Labs from './pages/Labs.vue'
-import Machines from './pages/Machines.vue'
-import Space from './pages/Space.vue'
-import About from './pages/About.vue'
+
+// Lazy load route components for code splitting
+const Map = () => import('./pages/Map.vue')
+const Labs = () => import('./pages/Labs.vue')
+const Machines = () => import('./pages/Machines.vue')
+const Space = () => import('./pages/Space.vue')
+const About = () => import('./pages/About.vue')
 
 const routes = [
   { path: '/', redirect: '/map' },
@@ -24,7 +24,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -46,8 +46,7 @@ const router = createRouter({
 })
 
 const vuetify = createVuetify({
-  components,
-  directives,
+  // Tree-shaking: Only import components/directives when vuetify autoImport is enabled
   theme: {
     themes: {
       light: {
