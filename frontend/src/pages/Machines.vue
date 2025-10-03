@@ -64,9 +64,9 @@
       <small>* Based on machines listed on this page</small>
     </section>
 
-    <v-btn fab fixed bottom right small to="/machines#machines">
-      <v-icon>mdi-arrow-up-bold</v-icon>
-    </v-btn>
+    <v-fab app bottom right small to="/machines#machines" icon="mdi-arrow-up-bold"></v-fab>
+
+    <v-fab absolute bottom right icon="$vuetify"></v-fab>
 
     <h2 id="machines" class="text-h4 mt-16">Machines</h2>
     <v-chip-group @update:model-value="(val) => $router.push(`/machines/#${val}`)">

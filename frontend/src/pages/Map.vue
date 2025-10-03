@@ -39,8 +39,8 @@ export default {
       
       // Initialize map
       const leafletMap = L.map(mapContainer.value, {
-        center: [46.8, 8.2],
-        zoom: 8,
+        center: [46.94257184670688, 7.9578],
+        zoom: 9,
         minZoom: 7,
         maxZoom: 18,
         maxBounds: L.latLngBounds([

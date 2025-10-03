@@ -1,19 +1,15 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" temporary app style="z-index: 9999">
-      <v-app-bar flat color="secondary" class="header-bar">
-        <img src="/assets/logo.svg" width="40" height="40" class="mx-2" />
-        <v-toolbar-title class="text-primary">Swiss FabLabs</v-toolbar-title>
-      </v-app-bar>
-      <div class="px-3 py-5">
-        <Search />
-      </div>
+    <v-navigation-drawer v-model="drawer" temporary>
+      <div style="margin-top: 80px;"></div>
+      <Search />
       <v-list>
         <v-list-item
           v-for="link in links"
           :key="link.to"
           :to="link.to"
           color="primary"
+          class="text-uppercase"
         >
           <v-list-item-title>{{ link.label }}</v-list-item-title>
         </v-list-item>
@@ -28,9 +24,7 @@
       <img src="/assets/logo.svg" width="40" height="40" class="mx-2" />
       <v-toolbar-title class="text-primary">Swiss FabLabs</v-toolbar-title>
       <v-spacer />
-      <div class="d-none d-sm-flex">
-        <Search />
-      </div>
+      <Search class="d-none d-sm-block" />
       <v-spacer class="d-none d-md-flex" />
       <v-btn
         v-for="link in links"
@@ -77,6 +71,15 @@ export default {
   --primary-color: #e10707;
 }
 
+.v-application .primary--text {
+    color: #e10707 !important;
+    caret-color: #e10707 !important;
+}
+
+.v-main {
+  padding-top: 64px !important;
+}
+
 .header-bar {
   z-index: 9999 !important;
 }
@@ -98,6 +101,30 @@ h1:first-child {
 
 .v-application p {
   margin-bottom: 0.5em;
+}
+
+dt {
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 0.25em;
+}
+
+dd {
+  margin-inline-start: 40px;
+}
+
+.nav-item {
+  text-transform: uppercase;
+}
+
+.nav-btn {
+  margin-top: -4px;
+  height: calc(100% + 8px) !important;
+  margin-bottom: -4px;
+  text-transform: uppercase;
+}
+.nav-btn.v-btn--active .v-btn__underlay {
+  border-bottom: 8px solid var(--primary-color);
 }
 
 .v-application a {

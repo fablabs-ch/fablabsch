@@ -12,7 +12,7 @@
     placeholder="Search"
     prepend-inner-icon="mdi-magnify"
     bg-color="grey-lighten-4"
-    style="max-width: 300px"
+
     @update:model-value="goTo($event)"
   >
     <template v-slot:item="{ props, item }">
@@ -25,9 +25,6 @@
             <v-img :src="machineLogoThumb(item.raw)" />
           </v-avatar>
         </template>
-        <v-list-item-title v-if="item.raw.__type === 'space'">
-          {{ item.raw.name }}
-        </v-list-item-title>
         <template v-if="item.raw.__type === 'machine'">
           <v-list-item-title>{{ item.raw.name }}</v-list-item-title>
           <v-list-item-subtitle>

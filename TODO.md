@@ -1,4 +1,3 @@
-remove unused deps
 fix css
 fix fallback image
 cleanup build script

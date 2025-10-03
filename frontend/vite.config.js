@@ -15,7 +15,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
-      '@content': fileURLToPath(new URL('./content', import.meta.url)),
     },
   },
   // Use '/' if deploying to custom domain or root of GitHub Pages
