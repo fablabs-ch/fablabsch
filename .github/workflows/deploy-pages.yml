@@ -25,12 +25,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: frontend/package-lock.json
+          node-version: '22'
 
       - name: Install dependencies
-        run: cd frontend && npm install
+        run: cd frontend && npm install --no-package-lock --force
 
       - name: Build
         run: cd frontend && npm run build
