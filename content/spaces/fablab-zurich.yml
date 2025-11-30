@@ -15,4 +15,5 @@ twitter: fablabzurich
 language: DE
 events_ics: ''
 fablabsio: fablabzurich
-machines: []
+machines:
+- Prusa SL1S
