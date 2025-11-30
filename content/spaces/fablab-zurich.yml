@@ -1,5 +1,14 @@
 name: FabLab Zürich
-description: Das FabLab Zürich ist eine offene HighTech-Werkstatt.
+description: Offene HighTech-Werkstatt, 
+  **Öffnungszeiten - prüfe den Kalender auf der Webseite.**
+    
+    - Mittwoch    15:00 - 21:00 Uhr
+    
+    - Donnerstag  15:00 - 23:00 Uhr
+    
+    - Freitag     15:00 - 21:00 Uhr
+    
+    - Samstag     15:00 - 21:00 Uhr
 city: Zürich
 zip: '8004'
 street: Zimmerlistr. 6
@@ -7,7 +16,7 @@ country_code: CH
 state_code: ZH
 latitude: 47.3839493
 longitude: 8.5100603
-founded:
+founded: 2012-11-21
 email: info@zurich.fablab.ch
 website: https://zurich.fablab.ch/
 facebook: fablabzurich
@@ -15,4 +24,25 @@ twitter: fablabzurich
 language: DE
 events_ics: ''
 fablabsio: fablabzurich
-machines: []
+machines:
+- Prusa SL1S
+- Prusa Mini+
+- Prusa MK3S
+- Prusa MK4S
+- EinScan SP
+- Einstar
+- MillStep PA1070V3
+- Shapertools Origin
+- AKJ6090
+- tt-900
+- iKier K1 Pro Max
+- HSP-1360
+- Cameo
+- SD
+- Kniterate
+- TBS 500
+- 212VLB
+- Promac 354
+- Precisio CS70
+- X-Line X110
+- FormBox
