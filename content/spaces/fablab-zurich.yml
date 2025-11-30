@@ -17,3 +17,7 @@ events_ics: ''
 fablabsio: fablabzurich
 machines:
 - Prusa SL1S
+- Prusa Mini+
+- Prusa MK3S
+- Prusa MK4S
+
