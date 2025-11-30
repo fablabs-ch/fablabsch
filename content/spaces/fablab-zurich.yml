@@ -1,10 +1,14 @@
 name: FabLab Zürich
-description: Das FabLab Zürich ist eine offene HighTech-Werkstatt.
-  Öffnungszeiten - prüfe den Kalender auf der Webseite.
-  Mittwoch    15:00 - 21:00 Uhr
-  Donnerstag  15:00 - 23:00 Uhr
-  Freitag     15:00 - 21:00 Uhr
-  Samstag     15:00 - 21:00 Uhr
+description: Offene HighTech-Werkstatt, 
+  **Öffnungszeiten - prüfe den Kalender auf der Webseite.**
+    
+    - Mittwoch    15:00 - 21:00 Uhr
+    
+    - Donnerstag  15:00 - 23:00 Uhr
+    
+    - Freitag     15:00 - 21:00 Uhr
+    
+    - Samstag     15:00 - 21:00 Uhr
 city: Zürich
 zip: '8004'
 street: Zimmerlistr. 6
